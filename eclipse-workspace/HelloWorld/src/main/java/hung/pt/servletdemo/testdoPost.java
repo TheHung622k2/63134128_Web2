@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/testdoPost")
+// Ánh xạ servlet với đường dẫn '/testdoPost'. Khi gửi một GET request đến 'http://localhost:8888/HelloWorld/testdoPost', servlet sẽ đc kích hoạt và gửi lại cho client
+@WebServlet("/testdoPost") // Anotation cho qui định URL ứng với servlet này
 public class testdoPost extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
