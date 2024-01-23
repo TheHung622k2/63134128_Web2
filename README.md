@@ -1,4 +1,4 @@
-![image](https://github.com/TheHung622k2/63134128_Web2/assets/131739098/6caed7f8-be35-423b-a29f-d376f6521a77)# Phát triển ứng dụng Web 2
+# Phát triển ứng dụng Web 2
 - Họ và tên: Phạm Thế Hùng
 - Mssv: 63134128
 - Lớp: 63.CNTT-CLC
