@@ -1,12 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>User profile</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin người dùng</title>
+    <!-- Tích hợp Bootstrap từ CDN -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa; /* Màu nền nhẹ nhàng */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        header {
+            background-color: #007bff; /* Màu header tương ứng với Bootstrap */
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        h3 {
+            color: #000; /* Màu sắc cho tiêu đề */
+        }
+
+        .profile-section {
+            background-color: #F0F3F4;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            margin: 30px auto;
+            max-width: 600px;
+        }
+
+        .profile-image {
+            max-width: 40%;
+            border-radius: 50%;
+            border: 5px solid #FFEA00; /* Đổi màu đường viền và tăng kích thước */
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-	<h1>Ten: Pham The Hung</h1>
-	<h1>Lop: 63.CNTT-CLC</h1>
-	<h1>MSSV: 63134128</h1>
+    <header>
+        <h1>Thông tin người dùng</h1>
+    </header>
+
+    <div class="container profile-section">
+        <img src="images/tom.png" alt="User Image" class="profile-image mb-3">
+        <h4>Tên: Phạm Thế Hùng</h4>
+        <h4>Lớp: 63.CNTT-CLC</h4>
+        <h4>MSSV: 63134128</h4>
+    </div>
+
+    <!-- Tích hợp Bootstrap JS và Popper.js từ CDN (đặt ở cuối trang web để tối ưu hóa tốc độ tải trang) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
