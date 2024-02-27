@@ -12,7 +12,7 @@
     <center>
         <h1>Xin chào các bạn</h1>
         <%= new Date().toString() %>
-        <%= 2+5 %>
+        <%= 2+5>10 %>
         <%= "<br><b>Hôm nay tôi học JSP </b>" %>
     </center>
 </body>
