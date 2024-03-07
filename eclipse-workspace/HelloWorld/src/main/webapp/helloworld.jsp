@@ -8,6 +8,6 @@
 </head>
 <body>
 	<h1>Hello World!</h1>
-	Hôm nay là <%= new java.util.Date() %>
+	Hôm nay la <%= new java.util.Date() %>
 </body>
 </html>
