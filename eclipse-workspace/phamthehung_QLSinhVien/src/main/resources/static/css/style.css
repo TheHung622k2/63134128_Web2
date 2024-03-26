@@ -1,3 +1,8 @@
 .student-card {
 	margin-bottom: 20px;
 }
+
+.carousel-item img {
+        max-height: 300px; /* Set max height for images in carousel */
+        width: auto; /* Ensure images maintain aspect ratio */
+    }
