@@ -8,14 +8,16 @@
     <table>
         <thead>
             <tr>
-                <th>Mã</th>
-                <th>Tên</th>
+                <th>Mã sinh viên</th>
+                <th>Tên sinh viên</th>
+                <th>Điểm tích lũy</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="student : ${students}">
-                <td th:text="${student.id}"></td>
-                <td th:text="${student.name}"></td>
+                <td th:text="${student.maSV}"></td>
+                <td th:text="${student.tenSV}"></td>
+                <td th:text="${student.diemTichLuy}"></td>
             </tr>
         </tbody>
     </table>
