@@ -1,4 +1,4 @@
-package thiGK.ntu63134128.service;
+package thiGK.ntu63134128.models;
 
 public class DTOStudent {
 	private String maSV;
