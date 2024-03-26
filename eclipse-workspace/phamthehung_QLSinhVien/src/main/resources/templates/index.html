@@ -1,74 +1,98 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Information</title>
+  <title>Bootstrap Components</title>
   <!-- Bootstrap CSS -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Custom CSS -->
   <style>
-    /* Add your custom CSS styles here */
+    /* Custom CSS (Optional) */
+    .student-card {
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Danh mục 1</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Danh mục 2</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Danh mục 3</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+<!-- Navbar Bootstrap -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Your Brand</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Danh mục 1</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Danh mục 2</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Danh mục 3</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 
-  <!-- Carousel -->
-  <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="student1.jpg" class="d-block w-100" alt="Student 1">
-      </div>
-      <div class="carousel-item">
-        <img src="student2.jpg" class="d-block w-100" alt="Student 2">
-      </div>
-      <div class="carousel-item">
-        <img src="student3.jpg" class="d-block w-100" alt="Student 3">
-      </div>
+<!-- Carousel Bootstrap -->
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="student1.jpg" class="d-block w-100" alt="Student 1">
+    </div>
+    <div class="carousel-item">
+      <img src="student2.jpg" class="d-block w-100" alt="Student 2">
+    </div>
+    <div class="carousel-item">
+      <img src="student3.jpg" class="d-block w-100" alt="Student 3">
     </div>
   </div>
+</div>
 
-  <!-- Cards -->
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col-md-4" th:each="student : ${students}">
-        <div class="card">
-          <img th:src="${student.avatar}" class="card-img-top" alt="Avatar">
-          <div class="card-body">
-            <h5 class="card-title" th:text="${student.fullName}">Họ và tên</h5>
-            <p class="card-text" th:text="'Lớp: ' + ${student.class}">Lớp: ABC123</p>
-            <p class="card-text" th:text="'Khoa: ' + ${student.department}">Khoa: Khoa A</p>
-            <p class="card-text" th:text="'Trường: ' + ${student.school}">Trường: Trường XYZ</p>
-          </div>
+<!-- Cards Bootstrap -->
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card student-card">
+        <img src="avatar1.jpg" class="card-img-top" alt="Avatar 1">
+        <div class="card-body">
+          <h5 class="card-title">Họ Tên 1</h5>
+          <p class="card-text">Lớp: Lớp 1</p>
+          <p class="card-text">Khoa: Khoa 1</p>
+          <p class="card-text">Trường: Trường 1</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card student-card">
+        <img src="avatar2.jpg" class="card-img-top" alt="Avatar 2">
+        <div class="card-body">
+          <h5 class="card-title">Họ Tên 2</h5>
+          <p class="card-text">Lớp: Lớp 2</p>
+          <p class="card-text">Khoa: Khoa 2</p>
+          <p class="card-text">Trường: Trường 2</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card student-card">
+        <img src="avatar3.jpg" class="card-img-top" alt="Avatar 3">
+        <div class="card-body">
+          <h5 class="card-title">Họ Tên 3</h5>
+          <p class="card-text">Lớp: Lớp 3</p>
+          <p class="card-text">Khoa: Khoa 3</p>
+          <p class="card-text">Trường: Trường 3</p>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Bootstrap JS and jQuery (optional, for Bootstrap features) -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Bootstrap JS and jQuery (Make sure to include jQuery before Bootstrap.js) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
