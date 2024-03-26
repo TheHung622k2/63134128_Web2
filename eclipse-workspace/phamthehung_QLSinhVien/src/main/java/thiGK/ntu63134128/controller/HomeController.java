@@ -1,10 +1,18 @@
 package thiGK.ntu63134128.controller;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 import thiGK.ntu63134128.models.DTOStudent;
 import thiGK.ntu63134128.service.StudentService;
@@ -12,7 +20,7 @@ import thiGK.ntu63134128.service.StudentService;
 @Controller
 public class HomeController {
 	@Autowired
-    private StudentService studentService;
+    private StudentService svService;
 	
 	@GetMapping("/home")
 	public String index()
@@ -20,29 +28,22 @@ public class HomeController {
 		return "index";
 	}
 	
-	// hien thi danh sach
-    @GetMapping("/students")
-    public String showStudents(Model model) {
-        model.addAttribute("students", studentService.getAllStudents());
-        return "students";
-    }
-    
-    // Hien thi form cho phep them moi sinh vien
-    @GetMapping("/add-student-form")
-    public String showAddStudentForm(Model model) {
-        model.addAttribute("student", new DTOStudent());
-        return "add-student-form";
-    }
-    
-    // Tim kiem thong qua ma
-    @GetMapping("/search")
-    public String searchStudentById(@RequestParam("id") String id, Model model) {
-    	DTOStudent student = studentService.getStudentById(id);
-        if (student != null) {
-            model.addAttribute("student", student);
-            return "student-details";
-        } else {
-            return "student-not-found";
+	@GetMapping("/danhSachSV")
+	public String listStudent(Model model,  
+								@RequestParam("page") Optional<Integer> page,
+								@RequestParam("size") Optional<Integer> size) {
+		final int currentPage = page.orElse(1);
+        final int pageSize = size.orElse(5);
+        Page<DTOStudent> svPage = svService.findPaginated(PageRequest.of(currentPage - 1, pageSize));
+		model.addAttribute("dsSV", svPage);
+		
+		int totalPages = svPage.getTotalPages();
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                .boxed()
+                .collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
         }
-    }
+        return "Sinhvien_getAll_Paged";
+	}
 }

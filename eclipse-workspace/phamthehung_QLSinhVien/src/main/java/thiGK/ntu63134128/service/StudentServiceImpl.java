@@ -1,8 +1,13 @@
 package thiGK.ntu63134128.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import thiGK.ntu63134128.models.DTOStudent;
@@ -28,22 +33,20 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<DTOStudent> getAllStudents() {
-        return dsSinhVien;
-    }
+	public Page<DTOStudent> findPaginated(Pageable pageable) {
+		int pageSize = pageable.getPageSize();
+		int currentPage = pageable.getPageNumber();
+		int startItem = currentPage * pageSize;
+		List<DTOStudent> list;
 
-    @Override
-    public DTOStudent getStudentById(String id) {
-        for (DTOStudent sv : dsSinhVien) {
-            if (sv.getMaSV().equals(id)) {
-                return sv;
-            }
-        }
-        return null; // Trả về null nếu không tìm thấy sinh viên với mã tương ứng
-    }
-
-    @Override
-    public void addStudent(DTOStudent student) {
-        dsSinhVien.add(student);
-    }
+		if (dsSinhVien.size() < startItem) {
+			list = Collections.emptyList();
+		} else {
+			int toIndex = Math.min(startItem + pageSize, dsSinhVien.size());
+			list = dsSinhVien.subList(startItem, toIndex);
+		}
+		Page<DTOStudent> sinhvienPage = new PageImpl<DTOStudent>(list, PageRequest.of(currentPage, pageSize),
+				dsSinhVien.size());
+		return sinhvienPage;
+	}
 }

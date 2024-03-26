@@ -1,11 +1,12 @@
 package thiGK.ntu63134128.service;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import thiGK.ntu63134128.models.DTOStudent;
 
+@Service
 public interface StudentService {
-	List<DTOStudent> getAllStudents();
-	DTOStudent getStudentById(String id);
-    void addStudent(DTOStudent student);
+	public Page<DTOStudent> findPaginated(Pageable pageable);
 }
