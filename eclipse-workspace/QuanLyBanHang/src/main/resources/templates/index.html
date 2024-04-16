@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>TRANG CHỦ</title>
+<title>Danh sách Khách hàng</title>
 </head>
 <body>
-	<H1>MY HOME PAGE</H1>
+	<h1>Danh sách khách hàng</h1>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Mã KH</th>
+				<th>Tên KH </th>
+				<th>Địa chỉ </th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="kh : ${dsKhachHang}">
+				<td th:text="${kh.maKhach}" />
+				<td th:text="${kh.hoTen}" />
+				<td th:text="${kh.diaChi}" />
+			</tr>
+		</tbody>
+	</table>
 </body>
 </html>
