@@ -82,3 +82,10 @@ CREATE TABLE IF NOT EXISTS cauhoithuonggap (
     Question NVARCHAR(2000),
     Answer NVARCHAR(2000)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO thanhvien (TenDangNhap, Quyen, MatKhau, HoVaTen, DiaChi, SDT, Email) 
+VALUES 
+('user1', 'admin', 'password1', N'Nguyễn Văn A', N'123 Đường ABC, Quận 1, Thành phố Hồ Chí Minh', '0123456789', 'user1@example.com'),
+('user2', 'member', 'password2', N'Trần Thị B', N'456 Đường XYZ, Quận 2, Thành phố Hồ Chí Minh', '0987654321', 'user2@example.com'),
+('user3', 'member', 'password3', N'Lê Văn C', N'789 Đường DEF, Quận 3, Thành phố Hồ Chí Minh', '0369852147', 'user3@example.com');
+
