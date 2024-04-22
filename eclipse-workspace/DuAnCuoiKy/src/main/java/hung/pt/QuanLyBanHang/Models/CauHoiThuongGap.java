@@ -12,13 +12,13 @@ import jakarta.persistence.Table;
 public class CauHoiThuongGap {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "id")
     private int id;
 
-    @Column(name = "Question")
+    @Column(name = "question")
     private String question;
 
-    @Column(name = "Answer")
+    @Column(name = "answer")
     private String answer;
 
     // Constructor

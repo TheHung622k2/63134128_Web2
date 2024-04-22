@@ -11,10 +11,10 @@ public class ChiTietHoaDonId implements Serializable { // cần triển khai gia
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "MaHoaDon")
+	@Column(name = "ma_hoa_don")
     private int maHoaDon;
 
-    @Column(name = "MaSP")
+    @Column(name = "ma_sp")
     private int maSP;
 
 	public ChiTietHoaDonId() {

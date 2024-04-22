@@ -14,30 +14,30 @@ import jakarta.persistence.Table;
 public class SanPham {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MaSanPham")
+    @Column(name = "ma_san_pham")
     private int maSanPham;
 
-    @Column(name = "TenSanPham")
+    @Column(name = "ten_san_pham")
     private String tenSanPham;
 
     @ManyToOne
-    @JoinColumn(name = "MaNCC", nullable = false)
+    @JoinColumn(name = "ma_ncc", nullable = false)
     private NhaCungCap maNCC;
 
-    @Column(name = "SoLuong")
+    @Column(name = "so_luong")
     private int soLuong;
 
     @ManyToOne
-    @JoinColumn(name = "MaLoai", nullable = false)
+    @JoinColumn(name = "ma_loai", nullable = false)
     private Loai maLoai;
 
-    @Column(name = "GiaTien")
+    @Column(name = "gia_tien")
     private float giaTien;
 
-    @Column(name = "MoTa")
+    @Column(name = "mo_ta")
     private String moTa;
 
-    @Column(name = "AnhSP")
+    @Column(name = "anh_sp")
     private String anhSP;
 
     // Constructor

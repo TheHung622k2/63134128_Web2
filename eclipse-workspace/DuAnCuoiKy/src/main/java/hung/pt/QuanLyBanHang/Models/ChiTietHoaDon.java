@@ -14,17 +14,17 @@ public class ChiTietHoaDon {
     private ChiTietHoaDonId id; // sử dụng một khóa chính nhúng (ChiTietHoaDonId) để đại diện cho khóa chính gồm cả MaHoaDon và MaSP.
 
     @ManyToOne // đánh dấu là các liên kết nhiều-đến-một tới các đối tượng HoaDon tương ứng
-    @JoinColumn(name = "MaHoaDon", insertable = false, updatable = false)
+    @JoinColumn(name = "ma_hoa_don", insertable = false, updatable = false)
     private HoaDon hoaDon;
 
     @ManyToOne // đánh dấu là các liên kết nhiều-đến-một tới các đối tượng SanPham tương ứng
-    @JoinColumn(name = "MaSP", insertable = false, updatable = false) // insertable = false và updatable = false được sử dụng trong các chú thích @JoinColumn để chỉ định rằng các trường MaHoaDon và MaSP không thể được thêm mới hoặc cập nhật trực tiếp trong lớp ChiTietHoaDon, mà chúng được điều chỉnh thông qua việc thêm hoặc cập nhật của HoaDon và SanPham tương ứng.
+    @JoinColumn(name = "ma_sp", insertable = false, updatable = false) // insertable = false và updatable = false được sử dụng trong các chú thích @JoinColumn để chỉ định rằng các trường MaHoaDon và MaSP không thể được thêm mới hoặc cập nhật trực tiếp trong lớp ChiTietHoaDon, mà chúng được điều chỉnh thông qua việc thêm hoặc cập nhật của HoaDon và SanPham tương ứng.
     private SanPham sanPham;
 
-    @Column(name = "SoLuong")
+    @Column(name = "so_luong")
     private int soLuong;
 
-    @Column(name = "GhiChu")
+    @Column(name = "ghi_chu")
     private String ghiChu;
 
     // Constructor

@@ -12,16 +12,16 @@ import jakarta.persistence.Table;
 public class NhaCungCap {
     @Id // đánh dấu là khóa chính và tự động tăng bằng cách sử dụng @Id và @GeneratedValue.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MaNhaCungCap")
+    @Column(name = "ma_nha_cung_cap")
     private int maNhaCungCap;
 
-    @Column(name = "TenNhaCungCap")
+    @Column(name = "ten_nha_cung_cap")
     private String tenNhaCungCap;
 
-    @Column(name = "SDT", length = 12) // length được sử dụng để chỉ định độ dài tối đa của chuỗi, giống với độ dài được xác định trong cấu trúc SQL.
+    @Column(name = "sdt", length = 12) // length được sử dụng để chỉ định độ dài tối đa của chuỗi, giống với độ dài được xác định trong cấu trúc SQL.
     private String sdt;
 
-    @Column(name = "DiaChi")
+    @Column(name = "dia_chi")
     private String diaChi;
 
     // Constructor

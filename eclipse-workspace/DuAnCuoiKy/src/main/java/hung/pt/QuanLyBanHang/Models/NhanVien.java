@@ -14,22 +14,22 @@ import jakarta.persistence.Table;
 public class NhanVien {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MaNhanVien")
+    @Column(name = "ma_nhan_vien")
     private int maNhanVien;
 
-    @Column(name = "TenNhanVien")
+    @Column(name = "ten_nhan_vien")
     private String tenNhanVien;
 
-    @Column(name = "DiaChi")
+    @Column(name = "dia_chi")
     private String diaChi;
 
-    @Column(name = "SDT")
+    @Column(name = "sdt")
     private String sdt;
 
-    @Column(name = "NgaySinh")
+    @Column(name = "ngay_sinh")
     private Date ngaySinh;
 
-    @Column(name = "TienLuong")
+    @Column(name = "tien_luong")
     private float tienLuong;
 
     // Constructor

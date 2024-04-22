@@ -12,10 +12,10 @@ import jakarta.persistence.Table;
 public class Loai {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MaLoai")
+    @Column(name = "ma_loai")
     private int maLoai;
 
-    @Column(name = "TenLoai")
+    @Column(name = "ten_loai")
     private String tenLoai;
 
     // Constructor

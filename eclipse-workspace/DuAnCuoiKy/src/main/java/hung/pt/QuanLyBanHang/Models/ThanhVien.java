@@ -12,28 +12,28 @@ import jakarta.persistence.Table;
 public class ThanhVien {
     @Id // đánh dấu là khóa chính
     @GeneratedValue(strategy = GenerationType.IDENTITY) // thiết lập tự động tăng bằng cách sử dụng @GeneratedValue với GenerationType.IDENTITY.
-    @Column(name = "ID")
+    @Column(name = "id")
     private int id;
     
-    @Column(name = "TenDangNhap", nullable = false) // nullable = false để phản ánh điều kiện NOT NULL trong cơ sở dữ liệu.
+    @Column(name = "ten_dang_nhap", nullable = false) // nullable = false để phản ánh điều kiện NOT NULL trong cơ sở dữ liệu.
     private String tenDangNhap;
     
-    @Column(name = "Quyen", nullable = false)
+    @Column(name = "quyen", nullable = false)
     private String quyen;
     
-    @Column(name = "MatKhau")
+    @Column(name = "mat_khau")
     private String matKhau;
     
-    @Column(name = "HoVaTen")
+    @Column(name = "ho_va_ten")
     private String hoVaTen;
     
-    @Column(name = "DiaChi")
+    @Column(name = "dia_chi")
     private String diaChi;
     
-    @Column(name = "SDT", length = 12) // length được sử dụng để chỉ định độ dài tối đa của chuỗi
+    @Column(name = "sdt", length = 12) // length được sử dụng để chỉ định độ dài tối đa của chuỗi
     private String sdt;
     
-    @Column(name = "Email")
+    @Column(name = "email")
     private String email;
 
     // Constructor

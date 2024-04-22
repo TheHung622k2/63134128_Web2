@@ -16,29 +16,29 @@ import jakarta.persistence.Table;
 public class HoaDon {
     @Id //  đánh dấu là khóa chính và tự động tăng bằng cách sử dụng @Id và @GeneratedValue.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MaHoaDon")
+    @Column(name = "ma_hoa_don")
     private int maHoaDon;
 
-    @Column(name = "NgayTao")
+    @Column(name = "ngay_tao")
     private Date ngayTao;
 
     @ManyToOne // đánh dấu là một liên kết n-1 tới lớp ThanhVien bằng cách sử dụng @ManyToOne và @JoinColumn.
-    @JoinColumn(name = "MaThanhVien", nullable = false)
+    @JoinColumn(name = "ma_thanh_vien", nullable = false)
     private ThanhVien maThanhVien;
 
-    @Column(name = "TongTien")
+    @Column(name = "tong_tien")
     private float tongTien;
 
-    @Column(name = "NguoiNhan")
+    @Column(name = "nguoi_nhan")
     private String nguoiNhan;
 
-    @Column(name = "DiaChi")
+    @Column(name = "dia_chi")
     private String diaChi;
 
-    @Column(name = "SDT", length = 12)
+    @Column(name = "sdt", length = 12)
     private String sdt;
 
-    @Column(name = "GhiChu")
+    @Column(name = "ghi_chu")
     private String ghiChu;
 
     // Constructors

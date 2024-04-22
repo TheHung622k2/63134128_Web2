@@ -4,88 +4,89 @@ USE QuanLyVanPhongPham;
 
 -- Bảng 'thanhvien'
 CREATE TABLE IF NOT EXISTS thanhvien (
-    ID INT AUTO_INCREMENT PRIMARY KEY,
-    TenDangNhap VARCHAR(2000) NOT NULL,
-    Quyen VARCHAR(20) NOT NULL,
-    MatKhau VARCHAR(500),
-    HoVaTen NVARCHAR(2000),
-    DiaChi NVARCHAR(2000),
-    SDT VARCHAR(12),
-    Email VARCHAR(2000)
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    ten_dang_nhap VARCHAR(2000) NOT NULL,
+    quyen VARCHAR(20) NOT NULL,
+    mat_khau VARCHAR(500),
+    ho_va_ten NVARCHAR(2000),
+    dia_chi NVARCHAR(2000),
+    sdt VARCHAR(12),
+    email VARCHAR(2000)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Bảng 'hoadon'
 CREATE TABLE IF NOT EXISTS hoadon (
-    MaHoaDon INT AUTO_INCREMENT PRIMARY KEY,
-    NgayTao DATETIME,
-    MaThanhVien INT NOT NULL,
-    TongTien FLOAT,
-    NguoiNhan NVARCHAR(2000),
-    DiaChi NVARCHAR(2000),
-    SDT VARCHAR(12),
-    GhiChu NVARCHAR(20),
-    FOREIGN KEY (MaThanhVien) REFERENCES thanhvien(ID)
+    ma_hoa_don INT AUTO_INCREMENT PRIMARY KEY,
+    ngay_tao DATETIME,
+    ma_thanh_vien INT NOT NULL,
+    tong_tien FLOAT,
+    nguoi_nhan NVARCHAR(2000),
+    dia_chi NVARCHAR(2000),
+    sdt VARCHAR(12),
+    ghi_chu NVARCHAR(20),
+    FOREIGN KEY (ma_thanh_vien) REFERENCES thanhvien(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Bảng 'nhacungcap'
 CREATE TABLE IF NOT EXISTS nhacungcap (
-    MaNhaCungCap INT AUTO_INCREMENT PRIMARY KEY,
-    TenNhaCungCap NVARCHAR(2000),
-    SDT VARCHAR(12),
-    DiaChi NVARCHAR(2000)
+    ma_nha_cung_cap INT AUTO_INCREMENT PRIMARY KEY,
+    ten_nha_cung_cap NVARCHAR(2000),
+    sdt VARCHAR(12),
+    dia_chi NVARCHAR(2000)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Bảng 'loai'
 CREATE TABLE IF NOT EXISTS loai (
-    MaLoai INT AUTO_INCREMENT PRIMARY KEY,
-    TenLoai NVARCHAR(2000)
+    ma_loai INT AUTO_INCREMENT PRIMARY KEY,
+    ten_loai NVARCHAR(2000)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Bảng 'sanpham'
 CREATE TABLE IF NOT EXISTS sanpham (
-    MaSanPham INT AUTO_INCREMENT PRIMARY KEY,
-    TenSanPham NVARCHAR(2000),
-    MaNCC INT NOT NULL,
-    SoLuong INT,
-    MaLoai INT NOT NULL,
-    GiaTien FLOAT,
-    MoTa NVARCHAR(2000),
-    AnhSP NVARCHAR(2000),
-    FOREIGN KEY (MaNCC) REFERENCES nhacungcap(MaNhaCungCap),
-    FOREIGN KEY (MaLoai) REFERENCES loai(MaLoai)
+    ma_san_pham INT AUTO_INCREMENT PRIMARY KEY,
+    ten_san_pham NVARCHAR(2000),
+    ma_ncc INT NOT NULL,
+    so_luong INT,
+    ma_loai INT NOT NULL,
+    gia_tien FLOAT,
+    mo_ta NVARCHAR(2000),
+    anh_sp NVARCHAR(2000),
+    FOREIGN KEY (ma_ncc) REFERENCES nhacungcap(ma_nha_cung_cap),
+    FOREIGN KEY (ma_loai) REFERENCES loai(ma_loai)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Bảng 'chitiethoadon'
 CREATE TABLE IF NOT EXISTS chitiethoadon (
-    MaHoaDon INT,
-    MaSP INT,
-    SoLuong INT,
-    GhiChu NVARCHAR(2000),
-    PRIMARY KEY (MaHoaDon, MaSP),
-    FOREIGN KEY (MaHoaDon) REFERENCES hoadon(MaHoaDon),
-    FOREIGN KEY (MaSP) REFERENCES sanpham(MaSanPham)
+    ma_hoa_don INT,
+    ma_sp INT,
+    so_luong INT,
+    ghi_chu NVARCHAR(2000),
+    PRIMARY KEY (ma_hoa_don, ma_sp),
+    FOREIGN KEY (ma_hoa_don) REFERENCES hoadon(ma_hoa_don),
+    FOREIGN KEY (ma_sp) REFERENCES sanpham(ma_san_pham)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Bảng 'nhanvien'
 CREATE TABLE IF NOT EXISTS nhanvien (
-    MaNhanVien INT AUTO_INCREMENT PRIMARY KEY,
-    TenNhanVien NVARCHAR(2000),
-    DiaChi NVARCHAR(2000),
-    SDT VARCHAR(12),
-    NgaySinh DATETIME,
-    TienLuong FLOAT
+    ma_nhan_vien INT AUTO_INCREMENT PRIMARY KEY,
+    ten_nhan_vien NVARCHAR(2000),
+    dia_chi NVARCHAR(2000),
+    sdt VARCHAR(12),
+    ngay_sinh DATETIME,
+    tien_luong FLOAT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Bảng 'cauhoithuonggap'
 CREATE TABLE IF NOT EXISTS cauhoithuonggap (
-    ID INT AUTO_INCREMENT PRIMARY KEY,
-    Question NVARCHAR(2000),
-    Answer NVARCHAR(2000)
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    question NVARCHAR(2000),
+    answer NVARCHAR(2000)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO thanhvien (TenDangNhap, Quyen, MatKhau, HoVaTen, DiaChi, SDT, Email) 
+INSERT INTO thanhvien (ten_dang_nhap, quyen, mat_khau, ho_va_ten, dia_chi, sdt, email) 
 VALUES 
 ('user1', 'admin', 'password1', N'Nguyễn Văn A', N'123 Đường ABC, Quận 1, Thành phố Hồ Chí Minh', '0123456789', 'user1@example.com'),
 ('user2', 'member', 'password2', N'Trần Thị B', N'456 Đường XYZ, Quận 2, Thành phố Hồ Chí Minh', '0987654321', 'user2@example.com'),
 ('user3', 'member', 'password3', N'Lê Văn C', N'789 Đường DEF, Quận 3, Thành phố Hồ Chí Minh', '0369852147', 'user3@example.com');
+
 
