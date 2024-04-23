@@ -1,0 +1,43 @@
+/* Hover effect for navbar items */
+.navbar-nav .nav-item .nav-link:hover {
+    color: #007bff; /* Màu sắc khi hover vào */
+    transition: color 0.3s; /* Hiệu ứng chuyển động */
+}
+
+/* Hover effect for login and register buttons */
+.navbar-nav .nav-item .login-btn:hover,
+.navbar-nav .nav-item .register-btn:hover {
+    color: #ffffff; /* Màu sắc khi hover vào */
+    transition: color 0.3s; /* Hiệu ứng chuyển động */
+    filter: brightness(110%); /* Tăng độ sáng */
+}
+
+/* Đường phân cách giữa 2 nút */
+.divider-vertical {
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    height: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/* Style for login button */
+.navbar-nav .nav-item .login-btn {
+    padding: 8px 16px;
+    border-radius: 5px;
+    margin: 0 5px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #dc3545; /* Màu đỏ */
+    color: white; /* Chữ trắng */
+}
+
+/* Style for register button */
+.navbar-nav .nav-item .register-btn {
+    padding: 8px 16px;
+    border-radius: 5px;
+    margin: 0 5px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #007bff; /* Màu xanh dương */
+    color: white; /* Chữ trắng */
+}
