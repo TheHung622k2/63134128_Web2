@@ -2,7 +2,7 @@ CREATE DATABASE IF NOT EXISTS QuanLyVanPhongPham CHARACTER SET utf8mb4 COLLATE u
 
 USE QuanLyVanPhongPham;
 
--- Bảng 'thanhvien'
+-- Bảng 'nguoidung'
 CREATE TABLE IF NOT EXISTS thanhvien (
     id INT AUTO_INCREMENT PRIMARY KEY,
     ten_dang_nhap VARCHAR(2000) NOT NULL,
