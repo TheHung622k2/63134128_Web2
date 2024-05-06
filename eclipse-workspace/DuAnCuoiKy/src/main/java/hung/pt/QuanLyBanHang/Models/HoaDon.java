@@ -17,72 +17,68 @@ import jakarta.persistence.TemporalType;
 @Table(name = "hoadon")
 public class HoaDon {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ma_hoa_don")
-    private int maHoaDon;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ma_hoa_don")
+	private int maHoaDon;
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "ngay_lap", nullable = false)
-    private Date ngayLap;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "ngay_lap", nullable = false)
+	private Date ngayLap;
 
-    @Column(name = "tong_tien", nullable = false)
-    private float tongTien;
+	@Column(name = "tong_tien", nullable = false)
+	private float tongTien;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private NguoiDung nguoiDung;
+	@ManyToOne
+	@JoinColumn(name = "user_id", nullable = false)
+	private NguoiDung nguoiDung;
 
-    // Constructors, getters, setters
+	// Constructors, getters, setters
 
-    public HoaDon() {
-    }
+	public HoaDon() {
+	}
 
-    public HoaDon(Date ngayLap, float tongTien, NguoiDung nguoiDung) {
-        this.ngayLap = ngayLap;
-        this.tongTien = tongTien;
-        this.nguoiDung = nguoiDung;
-    }
+	public HoaDon(Date ngayLap, float tongTien, NguoiDung nguoiDung) {
+		this.ngayLap = ngayLap;
+		this.tongTien = tongTien;
+		this.nguoiDung = nguoiDung;
+	}
 
-    public int getMaHoaDon() {
-        return maHoaDon;
-    }
+	public int getMaHoaDon() {
+		return maHoaDon;
+	}
 
-    public void setMaHoaDon(int maHoaDon) {
-        this.maHoaDon = maHoaDon;
-    }
+	public void setMaHoaDon(int maHoaDon) {
+		this.maHoaDon = maHoaDon;
+	}
 
-    public Date getNgayLap() {
-        return ngayLap;
-    }
+	public Date getNgayLap() {
+		return ngayLap;
+	}
 
-    public void setNgayLap(Date ngayLap) {
-        this.ngayLap = ngayLap;
-    }
+	public void setNgayLap(Date ngayLap) {
+		this.ngayLap = ngayLap;
+	}
 
-    public float getTongTien() {
-        return tongTien;
-    }
+	public float getTongTien() {
+		return tongTien;
+	}
 
-    public void setTongTien(float tongTien) {
-        this.tongTien = tongTien;
-    }
+	public void setTongTien(float tongTien) {
+		this.tongTien = tongTien;
+	}
 
-    public NguoiDung getNguoiDung() {
-        return nguoiDung;
-    }
+	public NguoiDung getNguoiDung() {
+		return nguoiDung;
+	}
 
-    public void setNguoiDung(NguoiDung nguoiDung) {
-        this.nguoiDung = nguoiDung;
-    }
+	public void setNguoiDung(NguoiDung nguoiDung) {
+		this.nguoiDung = nguoiDung;
+	}
 
-    @Override
-    public String toString() {
-        return "HoaDon{" +
-                "maHoaDon=" + maHoaDon +
-                ", ngayLap=" + ngayLap +
-                ", tongTien=" + tongTien +
-                ", nguoiDung=" + nguoiDung +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "HoaDon{" + "maHoaDon=" + maHoaDon + ", ngayLap=" + ngayLap + ", tongTien=" + tongTien + ", nguoiDung="
+				+ nguoiDung + '}';
+	}
 }

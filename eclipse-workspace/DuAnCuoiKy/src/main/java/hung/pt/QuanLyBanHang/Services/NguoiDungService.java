@@ -7,15 +7,15 @@ import hung.pt.QuanLyBanHang.Models.NguoiDung;
 
 public interface NguoiDungService {
 
-    List<NguoiDung> getAllNguoiDungs();
+	List<NguoiDung> getAllNguoiDungs();
 
-    Optional<NguoiDung> getNguoiDungById(int id);
+	Optional<NguoiDung> getNguoiDungById(int id);
 
-    NguoiDung saveNguoiDung(NguoiDung nguoiDung);
+	NguoiDung saveNguoiDung(NguoiDung nguoiDung);
 
-    void deleteNguoiDungById(int id);
+	void deleteNguoiDungById(int id);
 
-    List<NguoiDung> getNguoiDungsByTenDangNhap(String tenDangNhap);
+	List<NguoiDung> getNguoiDungsByTenDangNhap(String tenDangNhap);
 
-    List<NguoiDung> getNguoiDungsByQuyen(String quyen);
+	List<NguoiDung> getNguoiDungsByQuyen(String quyen);
 }

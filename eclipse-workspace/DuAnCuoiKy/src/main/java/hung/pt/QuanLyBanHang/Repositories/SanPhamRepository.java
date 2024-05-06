@@ -9,8 +9,8 @@ import hung.pt.QuanLyBanHang.Models.SanPham;
 
 @Repository
 public interface SanPhamRepository extends JpaRepository<SanPham, Integer> {
-	
+
 	List<SanPham> findByTenSanPham(String tenSanPham);
-  
-    List<SanPham> findByGiaTienBetween(float minGiaTien, float maxGiaTien);
+
+	List<SanPham> findByGiaTienBetween(float minGiaTien, float maxGiaTien);
 }

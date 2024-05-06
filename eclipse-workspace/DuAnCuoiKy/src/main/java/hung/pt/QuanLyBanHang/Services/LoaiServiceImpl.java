@@ -12,31 +12,31 @@ import hung.pt.QuanLyBanHang.Repositories.LoaiRepository;
 @Service
 public class LoaiServiceImpl implements LoaiService {
 
-    @Autowired
-    private LoaiRepository loaiRepository;
+	@Autowired
+	private LoaiRepository loaiRepository;
 
-    @Override
-    public List<Loai> getAllLoai() {
-        return loaiRepository.findAll();
-    }
+	@Override
+	public List<Loai> getAllLoai() {
+		return loaiRepository.findAll();
+	}
 
-    @Override
-    public Optional<Loai> getLoaiById(int id) {
-        return loaiRepository.findById(id);
-    }
+	@Override
+	public Optional<Loai> getLoaiById(int id) {
+		return loaiRepository.findById(id);
+	}
 
-    @Override
-    public Loai saveLoai(Loai loai) {
-        return loaiRepository.save(loai);
-    }
+	@Override
+	public Loai saveLoai(Loai loai) {
+		return loaiRepository.save(loai);
+	}
 
-    @Override
-    public void deleteLoaiById(int id) {
-        loaiRepository.deleteById(id);
-    }
+	@Override
+	public void deleteLoaiById(int id) {
+		loaiRepository.deleteById(id);
+	}
 
-    @Override
-    public List<Loai> getLoaiByTenLoai(String tenLoai) {
-        return loaiRepository.findByTenLoai(tenLoai);
-    }
+	@Override
+	public List<Loai> getLoaiByTenLoai(String tenLoai) {
+		return loaiRepository.findByTenLoai(tenLoai);
+	}
 }

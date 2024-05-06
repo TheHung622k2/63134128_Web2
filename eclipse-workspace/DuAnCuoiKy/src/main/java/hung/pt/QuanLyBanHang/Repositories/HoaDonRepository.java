@@ -10,6 +10,6 @@ import hung.pt.QuanLyBanHang.Models.HoaDon;
 
 @Repository
 public interface HoaDonRepository extends JpaRepository<HoaDon, Integer> {
-    
+
 	List<HoaDon> findByNgayLap(Date ngayLap);
 }

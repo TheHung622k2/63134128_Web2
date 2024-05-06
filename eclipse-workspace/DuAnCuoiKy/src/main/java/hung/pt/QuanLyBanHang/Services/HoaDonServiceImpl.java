@@ -13,31 +13,31 @@ import hung.pt.QuanLyBanHang.Repositories.HoaDonRepository;
 @Service
 public class HoaDonServiceImpl implements HoaDonService {
 
-    @Autowired
-    private HoaDonRepository hoaDonRepository;
+	@Autowired
+	private HoaDonRepository hoaDonRepository;
 
-    @Override
-    public List<HoaDon> getAllHoaDon() {
-        return hoaDonRepository.findAll();
-    }
+	@Override
+	public List<HoaDon> getAllHoaDon() {
+		return hoaDonRepository.findAll();
+	}
 
-    @Override
-    public Optional<HoaDon> getHoaDonById(int id) {
-        return hoaDonRepository.findById(id);
-    }
+	@Override
+	public Optional<HoaDon> getHoaDonById(int id) {
+		return hoaDonRepository.findById(id);
+	}
 
-    @Override
-    public HoaDon saveHoaDon(HoaDon hoaDon) {
-        return hoaDonRepository.save(hoaDon);
-    }
+	@Override
+	public HoaDon saveHoaDon(HoaDon hoaDon) {
+		return hoaDonRepository.save(hoaDon);
+	}
 
-    @Override
-    public void deleteHoaDonById(int id) {
-        hoaDonRepository.deleteById(id);
-    }
+	@Override
+	public void deleteHoaDonById(int id) {
+		hoaDonRepository.deleteById(id);
+	}
 
-    @Override
-    public List<HoaDon> getHoaDonByNgayLap(Date ngayLap) {
-        return hoaDonRepository.findByNgayLap(ngayLap);
-    }
+	@Override
+	public List<HoaDon> getHoaDonByNgayLap(Date ngayLap) {
+		return hoaDonRepository.findByNgayLap(ngayLap);
+	}
 }

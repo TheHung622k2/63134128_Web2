@@ -15,13 +15,13 @@ import hung.pt.QuanLyBanHang.Services.NhaCungCapService;
 @RequestMapping("/nhacungcap")
 public class NhaCungCapController {
 
-    @Autowired
-    private NhaCungCapService nhaCungCapService;
+	@Autowired
+	private NhaCungCapService nhaCungCapService;
 
-    @GetMapping("/all")
-    public String getAllNhaCungCap(Model model) {
-        List<NhaCungCap> dsNhaCungCap = nhaCungCapService.getAllNhaCungCap();
-        model.addAttribute("dsNhaCungCap", dsNhaCungCap);
-        return "nhacungcap/nhacungcap";
-    }
+	@GetMapping("/all")
+	public String getAllNhaCungCap(Model model) {
+		List<NhaCungCap> dsNhaCungCap = nhaCungCapService.getAllNhaCungCap();
+		model.addAttribute("dsNhaCungCap", dsNhaCungCap);
+		return "nhacungcap/nhacungcap";
+	}
 }

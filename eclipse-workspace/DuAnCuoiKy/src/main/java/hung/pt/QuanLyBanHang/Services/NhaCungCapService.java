@@ -7,13 +7,13 @@ import hung.pt.QuanLyBanHang.Models.NhaCungCap;
 
 public interface NhaCungCapService {
 
-    List<NhaCungCap> getAllNhaCungCap();
+	List<NhaCungCap> getAllNhaCungCap();
 
-    Optional<NhaCungCap> getNhaCungCapById(int id);
+	Optional<NhaCungCap> getNhaCungCapById(int id);
 
-    NhaCungCap saveNhaCungCap(NhaCungCap nhaCungCap);
+	NhaCungCap saveNhaCungCap(NhaCungCap nhaCungCap);
 
-    void deleteNhaCungCapById(int id);
+	void deleteNhaCungCapById(int id);
 
-    List<NhaCungCap> getNhaCungCapByTenNhaCungCap(String tenNhaCungCap);
+	List<NhaCungCap> getNhaCungCapByTenNhaCungCap(String tenNhaCungCap);
 }

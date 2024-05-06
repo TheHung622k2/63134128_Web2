@@ -7,13 +7,13 @@ import hung.pt.QuanLyBanHang.Models.Loai;
 
 public interface LoaiService {
 
-    List<Loai> getAllLoai();
+	List<Loai> getAllLoai();
 
-    Optional<Loai> getLoaiById(int id);
+	Optional<Loai> getLoaiById(int id);
 
-    Loai saveLoai(Loai loai);
+	Loai saveLoai(Loai loai);
 
-    void deleteLoaiById(int id);
+	void deleteLoaiById(int id);
 
-    List<Loai> getLoaiByTenLoai(String tenLoai);
+	List<Loai> getLoaiByTenLoai(String tenLoai);
 }

@@ -11,44 +11,41 @@ import jakarta.persistence.Table;
 @Table(name = "loai")
 public class Loai {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ma_loai")
-    private int maLoai;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ma_loai")
+	private int maLoai;
 
-    @Column(name = "ten_loai", length = 200)
-    private String tenLoai;
+	@Column(name = "ten_loai", length = 200)
+	private String tenLoai;
 
-    // Constructors, getters, setters
+	// Constructors, getters, setters
 
-    public Loai() {
-    }
+	public Loai() {
+	}
 
-    public Loai(String tenLoai) {
-        this.tenLoai = tenLoai;
-    }
+	public Loai(String tenLoai) {
+		this.tenLoai = tenLoai;
+	}
 
-    public int getMaLoai() {
-        return maLoai;
-    }
+	public int getMaLoai() {
+		return maLoai;
+	}
 
-    public void setMaLoai(int maLoai) {
-        this.maLoai = maLoai;
-    }
+	public void setMaLoai(int maLoai) {
+		this.maLoai = maLoai;
+	}
 
-    public String getTenLoai() {
-        return tenLoai;
-    }
+	public String getTenLoai() {
+		return tenLoai;
+	}
 
-    public void setTenLoai(String tenLoai) {
-        this.tenLoai = tenLoai;
-    }
+	public void setTenLoai(String tenLoai) {
+		this.tenLoai = tenLoai;
+	}
 
-    @Override
-    public String toString() {
-        return "Loai{" +
-                "maLoai=" + maLoai +
-                ", tenLoai='" + tenLoai + '\'' +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "Loai{" + "maLoai=" + maLoai + ", tenLoai='" + tenLoai + '\'' + '}';
+	}
 }

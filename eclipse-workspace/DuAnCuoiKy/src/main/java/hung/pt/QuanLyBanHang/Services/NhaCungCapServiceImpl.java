@@ -12,31 +12,31 @@ import hung.pt.QuanLyBanHang.Repositories.NhaCungCapRepository;
 @Service
 public class NhaCungCapServiceImpl implements NhaCungCapService {
 
-    @Autowired
-    private NhaCungCapRepository nhaCungCapRepository;
+	@Autowired
+	private NhaCungCapRepository nhaCungCapRepository;
 
-    @Override
-    public List<NhaCungCap> getAllNhaCungCap() {
-        return nhaCungCapRepository.findAll();
-    }
+	@Override
+	public List<NhaCungCap> getAllNhaCungCap() {
+		return nhaCungCapRepository.findAll();
+	}
 
-    @Override
-    public Optional<NhaCungCap> getNhaCungCapById(int id) {
-        return nhaCungCapRepository.findById(id);
-    }
+	@Override
+	public Optional<NhaCungCap> getNhaCungCapById(int id) {
+		return nhaCungCapRepository.findById(id);
+	}
 
-    @Override
-    public NhaCungCap saveNhaCungCap(NhaCungCap nhaCungCap) {
-        return nhaCungCapRepository.save(nhaCungCap);
-    }
+	@Override
+	public NhaCungCap saveNhaCungCap(NhaCungCap nhaCungCap) {
+		return nhaCungCapRepository.save(nhaCungCap);
+	}
 
-    @Override
-    public void deleteNhaCungCapById(int id) {
-        nhaCungCapRepository.deleteById(id);
-    }
+	@Override
+	public void deleteNhaCungCapById(int id) {
+		nhaCungCapRepository.deleteById(id);
+	}
 
-    @Override
-    public List<NhaCungCap> getNhaCungCapByTenNhaCungCap(String tenNhaCungCap) {
-        return nhaCungCapRepository.findByTenNhaCungCap(tenNhaCungCap);
-    }
+	@Override
+	public List<NhaCungCap> getNhaCungCapByTenNhaCungCap(String tenNhaCungCap) {
+		return nhaCungCapRepository.findByTenNhaCungCap(tenNhaCungCap);
+	}
 }

@@ -15,13 +15,13 @@ import hung.pt.QuanLyBanHang.Services.LoaiService;
 @RequestMapping("/loai")
 public class LoaiController {
 
-    @Autowired
-    private LoaiService loaiService;
+	@Autowired
+	private LoaiService loaiService;
 
-    @GetMapping("/all")
-    public String getAllLoai(Model model) {
-        List<Loai> dsLoai = loaiService.getAllLoai();
-        model.addAttribute("dsLoai", dsLoai);
-        return "loai/loai";
-    }
+	@GetMapping("/all")
+	public String getAllLoai(Model model) {
+		List<Loai> dsLoai = loaiService.getAllLoai();
+		model.addAttribute("dsLoai", dsLoai);
+		return "loai/loai";
+	}
 }

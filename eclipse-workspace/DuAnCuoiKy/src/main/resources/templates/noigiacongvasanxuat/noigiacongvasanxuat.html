@@ -2,26 +2,34 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh sách nơi gia công và sản xuất</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1 class="mt-5 mb-4">Danh sách nơi gia công và sản xuất</h1>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Mã nơi gia công</th>
-                    <th>Tên nơi gia công</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="noiGiaCong : ${dsNoiGiaCongVaSanXuat}">
-                    <td th:text="${noiGiaCong.maNoiGiaCongVaSanXuat}"></td>
-                    <td th:text="${noiGiaCong.tenNoiGiaCongVaSanXuat}"></td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="container mt-5">
+        <h1 class="mb-4">Danh sách nơi gia công và sản xuất</h1>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Mã nơi gia công</th>
+                        <th scope="col">Tên nơi gia công</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Thymeleaf loop here -->
+                    <tr th:each="noiGiaCong : ${dsNoiGiaCongVaSanXuat}">
+                        <td th:text="${noiGiaCong.maNoiGiaCongVaSanXuat}"></td>
+                        <td th:text="${noiGiaCong.tenNoiGiaCongVaSanXuat}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+
+    <!-- Bootstrap JS -->
+    <script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

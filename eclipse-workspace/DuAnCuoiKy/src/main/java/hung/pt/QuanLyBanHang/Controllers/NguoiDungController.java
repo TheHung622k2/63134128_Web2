@@ -15,13 +15,13 @@ import hung.pt.QuanLyBanHang.Services.NguoiDungService;
 @RequestMapping("/nguoidung")
 public class NguoiDungController {
 
-    @Autowired
-    private NguoiDungService nguoiDungService;
+	@Autowired
+	private NguoiDungService nguoiDungService;
 
-    @GetMapping("/all")
-    public String getAllNguoiDung(Model model) {
-        List<NguoiDung> dsNguoiDung = nguoiDungService.getAllNguoiDungs();
-        model.addAttribute("dsNguoiDung", dsNguoiDung);
-        return "nguoidung/nguoidung";
-    }
+	@GetMapping("/all")
+	public String getAllNguoiDung(Model model) {
+		List<NguoiDung> dsNguoiDung = nguoiDungService.getAllNguoiDungs();
+		model.addAttribute("dsNguoiDung", dsNguoiDung);
+		return "nguoidung/nguoidung";
+	}
 }

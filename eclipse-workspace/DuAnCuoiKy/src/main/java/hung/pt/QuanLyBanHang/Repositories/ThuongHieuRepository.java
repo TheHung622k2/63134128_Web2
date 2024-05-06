@@ -9,6 +9,6 @@ import hung.pt.QuanLyBanHang.Models.ThuongHieu;
 
 @Repository
 public interface ThuongHieuRepository extends JpaRepository<ThuongHieu, Integer> {
-    
+
 	List<ThuongHieu> findByTenThuongHieu(String tenThuongHieu);
 }

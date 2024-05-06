@@ -15,13 +15,13 @@ import hung.pt.QuanLyBanHang.Services.SanPhamService;
 @RequestMapping("/sanpham")
 public class SanPhamController {
 
-    @Autowired
-    private SanPhamService sanPhamService;
+	@Autowired
+	private SanPhamService sanPhamService;
 
-    @GetMapping("/all")
-    public String getAllSanPhams(Model model) {
-        List<SanPham> dsSanPham = sanPhamService.getAllSanPhams();
-        model.addAttribute("dsSanPham", dsSanPham);
-        return "sanpham/sanpham";
-    }
+	@GetMapping("/all")
+	public String getAllSanPhams(Model model) {
+		List<SanPham> dsSanPham = sanPhamService.getAllSanPhams();
+		model.addAttribute("dsSanPham", dsSanPham);
+		return "sanpham/sanpham";
+	}
 }

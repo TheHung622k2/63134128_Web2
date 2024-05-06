@@ -7,13 +7,13 @@ import hung.pt.QuanLyBanHang.Models.NoiGiaCongVaSanXuat;
 
 public interface NoiGiaCongVaSanXuatService {
 
-    List<NoiGiaCongVaSanXuat> getAllNoiGiaCongVaSanXuat();
+	List<NoiGiaCongVaSanXuat> getAllNoiGiaCongVaSanXuat();
 
-    Optional<NoiGiaCongVaSanXuat> getNoiGiaCongVaSanXuatById(int id);
+	Optional<NoiGiaCongVaSanXuat> getNoiGiaCongVaSanXuatById(int id);
 
-    NoiGiaCongVaSanXuat saveNoiGiaCongVaSanXuat(NoiGiaCongVaSanXuat noiGiaCongVaSanXuat);
+	NoiGiaCongVaSanXuat saveNoiGiaCongVaSanXuat(NoiGiaCongVaSanXuat noiGiaCongVaSanXuat);
 
-    void deleteNoiGiaCongVaSanXuatById(int id);
+	void deleteNoiGiaCongVaSanXuatById(int id);
 
-    List<NoiGiaCongVaSanXuat> getNoiGiaCongVaSanXuatByTenNoiGiaCongVaSanXuat(String tenNoiGiaCongVaSanXuat);
+	List<NoiGiaCongVaSanXuat> getNoiGiaCongVaSanXuatByTenNoiGiaCongVaSanXuat(String tenNoiGiaCongVaSanXuat);
 }

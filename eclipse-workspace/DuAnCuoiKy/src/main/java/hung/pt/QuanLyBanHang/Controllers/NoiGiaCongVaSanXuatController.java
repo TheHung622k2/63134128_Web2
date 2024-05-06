@@ -15,13 +15,13 @@ import hung.pt.QuanLyBanHang.Services.NoiGiaCongVaSanXuatService;
 @RequestMapping("/noigiacongvasanxuat")
 public class NoiGiaCongVaSanXuatController {
 
-    @Autowired
-    private NoiGiaCongVaSanXuatService noiGiaCongVaSanXuatService;
+	@Autowired
+	private NoiGiaCongVaSanXuatService noiGiaCongVaSanXuatService;
 
-    @GetMapping("/all")
-    public String getAllNoiGiaCongVaSanXuat(Model model) {
-        List<NoiGiaCongVaSanXuat> dsNoiGiaCongVaSanXuat = noiGiaCongVaSanXuatService.getAllNoiGiaCongVaSanXuat();
-        model.addAttribute("dsNoiGiaCongVaSanXuat", dsNoiGiaCongVaSanXuat);
-        return "noigiacongvasanxuat/noigiacongvasanxuat";
-    }
+	@GetMapping("/all")
+	public String getAllNoiGiaCongVaSanXuat(Model model) {
+		List<NoiGiaCongVaSanXuat> dsNoiGiaCongVaSanXuat = noiGiaCongVaSanXuatService.getAllNoiGiaCongVaSanXuat();
+		model.addAttribute("dsNoiGiaCongVaSanXuat", dsNoiGiaCongVaSanXuat);
+		return "noigiacongvasanxuat/noigiacongvasanxuat";
+	}
 }

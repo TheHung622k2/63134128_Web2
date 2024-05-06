@@ -8,13 +8,13 @@ import hung.pt.QuanLyBanHang.Models.HoaDon;
 
 public interface HoaDonService {
 
-    List<HoaDon> getAllHoaDon();
+	List<HoaDon> getAllHoaDon();
 
-    Optional<HoaDon> getHoaDonById(int id);
+	Optional<HoaDon> getHoaDonById(int id);
 
-    HoaDon saveHoaDon(HoaDon hoaDon);
+	HoaDon saveHoaDon(HoaDon hoaDon);
 
-    void deleteHoaDonById(int id);
+	void deleteHoaDonById(int id);
 
-    List<HoaDon> getHoaDonByNgayLap(Date ngayLap);
+	List<HoaDon> getHoaDonByNgayLap(Date ngayLap);
 }

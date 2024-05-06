@@ -15,13 +15,13 @@ import hung.pt.QuanLyBanHang.Services.HoaDonService;
 @RequestMapping("/hoadon")
 public class HoaDonController {
 
-    @Autowired
-    private HoaDonService hoaDonService;
+	@Autowired
+	private HoaDonService hoaDonService;
 
-    @GetMapping("/all")
-    public String getAllHoaDon(Model model) {
-        List<HoaDon> dsHoaDon = hoaDonService.getAllHoaDon();
-        model.addAttribute("dsHoaDon", dsHoaDon);
-        return "hoadon/hoadon";
-    }
+	@GetMapping("/all")
+	public String getAllHoaDon(Model model) {
+		List<HoaDon> dsHoaDon = hoaDonService.getAllHoaDon();
+		model.addAttribute("dsHoaDon", dsHoaDon);
+		return "hoadon/hoadon";
+	}
 }

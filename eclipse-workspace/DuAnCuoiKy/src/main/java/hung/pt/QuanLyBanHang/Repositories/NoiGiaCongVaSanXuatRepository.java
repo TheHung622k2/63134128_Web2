@@ -9,6 +9,6 @@ import hung.pt.QuanLyBanHang.Models.NoiGiaCongVaSanXuat;
 
 @Repository
 public interface NoiGiaCongVaSanXuatRepository extends JpaRepository<NoiGiaCongVaSanXuat, Integer> {
-    
+
 	List<NoiGiaCongVaSanXuat> findByTenNoiGiaCongVaSanXuat(String tenNoiGiaCongVaSanXuat);
 }

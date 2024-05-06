@@ -15,13 +15,13 @@ import hung.pt.QuanLyBanHang.Services.ThuongHieuService;
 @RequestMapping("/thuonghieu")
 public class ThuongHieuController {
 
-    @Autowired
-    private ThuongHieuService thuongHieuService;
+	@Autowired
+	private ThuongHieuService thuongHieuService;
 
-    @GetMapping("/all")
-    public String getAllThuongHieu(Model model) {
-        List<ThuongHieu> dsThuongHieu = thuongHieuService.getAllThuongHieu();
-        model.addAttribute("dsThuongHieu", dsThuongHieu);
-        return "thuonghieu/thuonghieu";
-    }
+	@GetMapping("/all")
+	public String getAllThuongHieu(Model model) {
+		List<ThuongHieu> dsThuongHieu = thuongHieuService.getAllThuongHieu();
+		model.addAttribute("dsThuongHieu", dsThuongHieu);
+		return "thuonghieu/thuonghieu";
+	}
 }

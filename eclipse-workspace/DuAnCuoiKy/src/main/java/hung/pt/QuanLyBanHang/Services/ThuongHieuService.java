@@ -7,13 +7,13 @@ import hung.pt.QuanLyBanHang.Models.ThuongHieu;
 
 public interface ThuongHieuService {
 
-    List<ThuongHieu> getAllThuongHieu();
+	List<ThuongHieu> getAllThuongHieu();
 
-    Optional<ThuongHieu> getThuongHieuById(int id);
+	Optional<ThuongHieu> getThuongHieuById(int id);
 
-    ThuongHieu saveThuongHieu(ThuongHieu thuongHieu);
+	ThuongHieu saveThuongHieu(ThuongHieu thuongHieu);
 
-    void deleteThuongHieuById(int id);
+	void deleteThuongHieuById(int id);
 
-    List<ThuongHieu> getThuongHieuByTenThuongHieu(String tenThuongHieu);
+	List<ThuongHieu> getThuongHieuByTenThuongHieu(String tenThuongHieu);
 }

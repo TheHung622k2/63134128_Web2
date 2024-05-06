@@ -12,36 +12,36 @@ import hung.pt.QuanLyBanHang.Repositories.NguoiDungRepository;
 @Service
 public class NguoiDungServiceImpl implements NguoiDungService {
 
-    @Autowired
-    private NguoiDungRepository nguoiDungRepository;
+	@Autowired
+	private NguoiDungRepository nguoiDungRepository;
 
-    @Override
-    public List<NguoiDung> getAllNguoiDungs() {
-        return nguoiDungRepository.findAll();
-    }
+	@Override
+	public List<NguoiDung> getAllNguoiDungs() {
+		return nguoiDungRepository.findAll();
+	}
 
-    @Override
-    public Optional<NguoiDung> getNguoiDungById(int id) {
-        return nguoiDungRepository.findById(id);
-    }
+	@Override
+	public Optional<NguoiDung> getNguoiDungById(int id) {
+		return nguoiDungRepository.findById(id);
+	}
 
-    @Override
-    public NguoiDung saveNguoiDung(NguoiDung nguoiDung) {
-        return nguoiDungRepository.save(nguoiDung);
-    }
+	@Override
+	public NguoiDung saveNguoiDung(NguoiDung nguoiDung) {
+		return nguoiDungRepository.save(nguoiDung);
+	}
 
-    @Override
-    public void deleteNguoiDungById(int id) {
-        nguoiDungRepository.deleteById(id);
-    }
+	@Override
+	public void deleteNguoiDungById(int id) {
+		nguoiDungRepository.deleteById(id);
+	}
 
-    @Override
-    public List<NguoiDung> getNguoiDungsByTenDangNhap(String tenDangNhap) {
-        return nguoiDungRepository.findByTenDangNhap(tenDangNhap);
-    }
+	@Override
+	public List<NguoiDung> getNguoiDungsByTenDangNhap(String tenDangNhap) {
+		return nguoiDungRepository.findByTenDangNhap(tenDangNhap);
+	}
 
-    @Override
-    public List<NguoiDung> getNguoiDungsByQuyen(String quyen) {
-        return nguoiDungRepository.findByQuyen(quyen);
-    }
+	@Override
+	public List<NguoiDung> getNguoiDungsByQuyen(String quyen) {
+		return nguoiDungRepository.findByQuyen(quyen);
+	}
 }

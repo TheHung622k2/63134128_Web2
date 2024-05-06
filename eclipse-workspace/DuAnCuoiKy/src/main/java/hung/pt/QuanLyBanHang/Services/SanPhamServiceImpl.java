@@ -12,8 +12,8 @@ import hung.pt.QuanLyBanHang.Repositories.SanPhamRepository;
 @Service
 public class SanPhamServiceImpl implements SanPhamService {
 
-    @Autowired
-    private SanPhamRepository sanPhamRepository;
+	@Autowired
+	private SanPhamRepository sanPhamRepository;
 
 	@Override
 	public List<SanPham> getAllSanPhams() {
@@ -32,7 +32,7 @@ public class SanPhamServiceImpl implements SanPhamService {
 
 	@Override
 	public void deleteSanPhamById(int id) {
-		sanPhamRepository.deleteById(id);		
+		sanPhamRepository.deleteById(id);
 	}
 
 	@Override
