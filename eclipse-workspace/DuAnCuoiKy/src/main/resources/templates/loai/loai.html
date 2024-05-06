@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách loại</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5 mb-4">Danh sách loại</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Mã loại</th>
+                    <th>Tên loại</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="loai : ${dsLoai}">
+                    <td th:text="${loai.maLoai}"></td>
+                    <td th:text="${loai.tenLoai}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách nhà cung cấp</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5 mb-4">Danh sách nhà cung cấp</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Mã nhà cung cấp</th>
+                    <th>Tên nhà cung cấp</th>
+                    <th>Số điện thoại</th>
+                    <th>Địa chỉ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="nhaCungCap : ${dsNhaCungCap}">
+                    <td th:text="${nhaCungCap.maNhaCungCap}"></td>
+                    <td th:text="${nhaCungCap.tenNhaCungCap}"></td>
+                    <td th:text="${nhaCungCap.sdt}"></td>
+                    <td th:text="${nhaCungCap.diaChi}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

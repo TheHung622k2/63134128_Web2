@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách người dùng</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5 mb-4">Danh sách người dùng</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên đăng nhập</th>
+                    <th>Quyền</th>
+                    <th>Họ và tên</th>
+                    <th>Địa chỉ</th>
+                    <th>Số điện thoại</th>
+                    <th>Ngày sinh</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="nguoiDung : ${dsNguoiDung}">
+                    <td th:text="${nguoiDung.userId}"></td>
+                    <td th:text="${nguoiDung.tenDangNhap}"></td>
+                    <td th:text="${nguoiDung.quyen}"></td>
+                    <td th:text="${nguoiDung.hoVaTen}"></td>
+                    <td th:text="${nguoiDung.diaChi}"></td>
+                    <td th:text="${nguoiDung.sdt}"></td>
+                    <td th:text="${nguoiDung.ngaySinh}"></td>
+                    <td th:text="${nguoiDung.email}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

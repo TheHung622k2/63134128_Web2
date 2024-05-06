@@ -22,6 +22,6 @@ public class SanPhamController {
     public String getAllSanPhams(Model model) {
         List<SanPham> dsSanPham = sanPhamService.getAllSanPhams();
         model.addAttribute("dsSanPham", dsSanPham);
-        return "test";
+        return "sanpham/sanpham";
     }
 }

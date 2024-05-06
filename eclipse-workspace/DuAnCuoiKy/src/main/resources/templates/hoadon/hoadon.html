@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách hóa đơn</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5 mb-4">Danh sách hóa đơn</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Mã hóa đơn</th>
+                    <th>Ngày lập</th>
+                    <th>Tổng tiền</th>
+                    <th>Người dùng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="hoaDon : ${dsHoaDon}">
+                    <td th:text="${hoaDon.maHoaDon}"></td>
+                    <td th:text="${hoaDon.ngayLap}"></td>
+                    <td th:text="${hoaDon.tongTien}"></td>
+                    <td th:text="${hoaDon.nguoiDung.tenDangNhap}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

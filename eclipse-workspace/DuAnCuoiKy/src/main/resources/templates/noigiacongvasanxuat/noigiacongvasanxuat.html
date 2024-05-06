@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách nơi gia công và sản xuất</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5 mb-4">Danh sách nơi gia công và sản xuất</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Mã nơi gia công</th>
+                    <th>Tên nơi gia công</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="noiGiaCong : ${dsNoiGiaCongVaSanXuat}">
+                    <td th:text="${noiGiaCong.maNoiGiaCongVaSanXuat}"></td>
+                    <td th:text="${noiGiaCong.tenNoiGiaCongVaSanXuat}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
