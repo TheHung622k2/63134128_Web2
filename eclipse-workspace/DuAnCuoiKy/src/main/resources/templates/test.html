@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách sản phẩm</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5 mb-4">Danh sách sản phẩm</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Mã sản phẩm</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Nhà cung cấp</th>
+                    <th>Số lượng</th>
+                    <th>Loại</th>
+                    <th>Thương hiệu</th>
+                    <th>Nơi gia công và sản xuất</th>
+                    <th>Giá tiền</th>
+                    <th>Mô tả</th>
+                    <th>Ảnh</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="sanPham : ${dsSanPham}">
+                    <td th:text="${sanPham.maSanPham}"></td>
+                    <td th:text="${sanPham.tenSanPham}"></td>
+                    <td th:text="${sanPham.nhaCungCap.tenNhaCungCap}"></td>
+                    <td th:text="${sanPham.soLuong}"></td>
+                    <td th:text="${sanPham.loai.tenLoai}"></td>
+                    <td th:text="${sanPham.thuongHieu.tenThuongHieu}"></td>
+                    <td th:text="${sanPham.noiGiaCongVaSanXuat.tenNoiGiaCongVaSanXuat}"></td>
+                    <td th:text="${sanPham.giaTien}"></td>
+                    <td th:text="${sanPham.moTa}"></td>
+                    <td><img th:src="@{${sanPham.anhSp}}" alt="Ảnh sản phẩm" width="100"/></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

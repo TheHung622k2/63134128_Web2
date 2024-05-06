@@ -1,126 +1,78 @@
 package hung.pt.QuanLyBanHang.Models;
 
-import java.sql.Date;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "hoadon")
 public class HoaDon {
-    @Id //  đánh dấu là khóa chính và tự động tăng bằng cách sử dụng @Id và @GeneratedValue.
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ma_hoa_don")
     private int maHoaDon;
 
-    @Column(name = "ngay_tao")
-    private Date ngayTao;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "ngay_lap", nullable = false)
+    private Date ngayLap;
 
-    @ManyToOne // đánh dấu là một liên kết n-1 tới lớp ThanhVien bằng cách sử dụng @ManyToOne và @JoinColumn.
-    @JoinColumn(name = "ma_thanh_vien", nullable = false)
-    private ThanhVien maThanhVien;
-
-    @Column(name = "tong_tien")
+    @Column(name = "tong_tien", nullable = false)
     private float tongTien;
 
-    @Column(name = "nguoi_nhan")
-    private String nguoiNhan;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private NguoiDung nguoiDung;
 
-    @Column(name = "dia_chi")
-    private String diaChi;
+    // Constructors, getters, setters
 
-    @Column(name = "sdt", length = 12)
-    private String sdt;
+    public HoaDon() {
+    }
 
-    @Column(name = "ghi_chu")
-    private String ghiChu;
+    public HoaDon(Date ngayLap, float tongTien, NguoiDung nguoiDung) {
+        this.ngayLap = ngayLap;
+        this.tongTien = tongTien;
+        this.nguoiDung = nguoiDung;
+    }
 
-    // Constructors
-	public HoaDon() {
-		super();
-	}
+    public int getMaHoaDon() {
+        return maHoaDon;
+    }
 
-	public HoaDon(int maHoaDon, Date ngayTao, ThanhVien maThanhVien, float tongTien, String nguoiNhan, String diaChi,
-			String sdt, String ghiChu) {
-		super();
-		this.maHoaDon = maHoaDon;
-		this.ngayTao = ngayTao;
-		this.maThanhVien = maThanhVien;
-		this.tongTien = tongTien;
-		this.nguoiNhan = nguoiNhan;
-		this.diaChi = diaChi;
-		this.sdt = sdt;
-		this.ghiChu = ghiChu;
-	}
+    public void setMaHoaDon(int maHoaDon) {
+        this.maHoaDon = maHoaDon;
+    }
 
-	// getter, setter
-	public int getMaHoaDon() {
-		return maHoaDon;
-	}
+    public Date getNgayLap() {
+        return ngayLap;
+    }
 
-	public void setMaHoaDon(int maHoaDon) {
-		this.maHoaDon = maHoaDon;
-	}
+    public void setNgayLap(Date ngayLap) {
+        this.ngayLap = ngayLap;
+    }
 
-	public Date getNgayTao() {
-		return ngayTao;
-	}
+    public float getTongTien() {
+        return tongTien;
+    }
 
-	public void setNgayTao(Date ngayTao) {
-		this.ngayTao = ngayTao;
-	}
+    public void setTongTien(float tongTien) {
+        this.tongTien = tongTien;
+    }
 
-	public ThanhVien getMaThanhVien() {
-		return maThanhVien;
-	}
+    public NguoiDung getNguoiDung() {
+        return nguoiDung;
+    }
 
-	public void setMaThanhVien(ThanhVien maThanhVien) {
-		this.maThanhVien = maThanhVien;
-	}
+    public void setNguoiDung(NguoiDung nguoiDung) {
+        this.nguoiDung = nguoiDung;
+    }
 
-	public float getTongTien() {
-		return tongTien;
-	}
-
-	public void setTongTien(float tongTien) {
-		this.tongTien = tongTien;
-	}
-
-	public String getNguoiNhan() {
-		return nguoiNhan;
-	}
-
-	public void setNguoiNhan(String nguoiNhan) {
-		this.nguoiNhan = nguoiNhan;
-	}
-
-	public String getDiaChi() {
-		return diaChi;
-	}
-
-	public void setDiaChi(String diaChi) {
-		this.diaChi = diaChi;
-	}
-
-	public String getSdt() {
-		return sdt;
-	}
-
-	public void setSdt(String sdt) {
-		this.sdt = sdt;
-	}
-
-	public String getGhiChu() {
-		return ghiChu;
-	}
-
-	public void setGhiChu(String ghiChu) {
-		this.ghiChu = ghiChu;
-	}  
+    @Override
+    public String toString() {
+        return "HoaDon{" +
+                "maHoaDon=" + maHoaDon +
+                ", ngayLap=" + ngayLap +
+                ", tongTien=" + tongTien +
+                ", nguoiDung=" + nguoiDung +
+                '}';
+    }
 }
