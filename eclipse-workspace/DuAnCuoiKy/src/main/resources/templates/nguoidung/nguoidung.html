@@ -6,15 +6,43 @@
     <title>Danh sách người dùng</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/custom-styles.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #343a40;
+        }
+
+        .table th, .table td {
+            vertical-align: middle;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 5px;
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="mb-4">Danh sách người dùng</h1>
+        <div class="header">
+            <h1 class="mb-4">Danh sách người dùng</h1>
+            <a href="/nguoidung/them" class="btn btn-primary">Thêm người dùng</a>
+        </div>
+
         <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
+            <table class="table table-hover">
+                <thead class="table-dark">
                     <tr>
-                        <th scope="col">ID</th>
+                        <th scope="col">STT</th>
                         <th scope="col">Tên đăng nhập</th>
                         <th scope="col">Quyền</th>
                         <th scope="col">Họ và tên</th>
@@ -22,12 +50,12 @@
                         <th scope="col">Số điện thoại</th>
                         <th scope="col">Ngày sinh</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Hành động</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Thymeleaf loop here -->
-                    <tr th:each="nguoiDung : ${dsNguoiDung}">
-                        <td th:text="${nguoiDung.userId}"></td>
+                    <tr th:each="nguoiDung, index : ${dsNguoiDung}">
+                        <td th:text="${index.count}"></td>
                         <td th:text="${nguoiDung.tenDangNhap}"></td>
                         <td th:text="${nguoiDung.quyen}"></td>
                         <td th:text="${nguoiDung.hoVaTen}"></td>
@@ -35,6 +63,14 @@
                         <td th:text="${nguoiDung.sdt}"></td>
                         <td th:text="${nguoiDung.ngaySinh}"></td>
                         <td th:text="${nguoiDung.email}"></td>
+                        <td>
+                            <div class="btn-group">
+                                <a th:href="@{/nguoidung/chitiet/{id}(id=${nguoiDung.userId})}" class="btn btn-info btn-sm">Chi tiết</a>
+                                <a th:href="@{/nguoidung/sua/{id}(id=${nguoiDung.userId})}" class="btn btn-warning btn-sm">Sửa</a>
+                                <a th:href="@{/nguoidung/xoa/{id}(id=${nguoiDung.userId})}" class="btn btn-danger btn-sm" 
+                                   onclick="return confirm('Bạn có chắc muốn xóa người dùng này không?')">Xóa</a>
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>

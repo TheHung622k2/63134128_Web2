@@ -2,12 +2,16 @@ package hung.pt.QuanLyBanHang.Models;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name = "nguoidung")
@@ -37,6 +41,8 @@ public class NguoiDung {
 	private String sdt;
 
 	@Column(name = "ngay_sinh")
+	@Temporal(TemporalType.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	private Date ngaySinh;
 
 	@Column(name = "email", length = 100)

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết người dùng</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Chi tiết người dùng</h1>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Tên đăng nhập: <span th:text="${nguoiDung.tenDangNhap}"></span></h5>
+                <h6 class="card-subtitle mb-2 text-muted">Quyền: <span th:text="${nguoiDung.quyen}"></span></h6>
+                <p class="card-text">Họ và tên: <span th:text="${nguoiDung.hoVaTen}"></span></p>
+                <p class="card-text">Địa chỉ: <span th:text="${nguoiDung.diaChi}"></span></p>
+                <p class="card-text">Số điện thoại: <span th:text="${nguoiDung.sdt}"></span></p>
+                <p class="card-text">Ngày sinh: <span th:text="${nguoiDung.ngaySinh}"></span></p>
+                <p class="card-text">Email: <span th:text="${nguoiDung.email}"></span></p>
+                <a href="/nguoidung/all" class="btn btn-primary">Quay lại</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

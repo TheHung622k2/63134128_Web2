@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sửa người dùng</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Sửa người dùng</h1>
+        <form th:action="@{/nguoidung/sua}" th:object="${nguoiDung}" method="post">
+            <input type="hidden" th:field="*{userId}">
+            <div class="form-group mb-3">
+                <label for="tenDangNhap">Tên đăng nhập:</label>
+                <input type="text" id="tenDangNhap" class="form-control" th:field="*{tenDangNhap}">
+            </div>
+            <div class="form-group mb-3">
+                <label for="quyen">Quyền:</label>
+                <input type="text" id="quyen" class="form-control" th:field="*{quyen}">
+            </div>
+            <div class="form-group mb-3">
+                <label for="hoVaTen">Họ và tên:</label>
+                <input type="text" id="hoVaTen" class="form-control" th:field="*{hoVaTen}">
+            </div>
+            <div class="form-group mb-3">
+                <label for="diaChi">Địa chỉ:</label>
+                <input type="text" id="diaChi" class="form-control" th:field="*{diaChi}">
+            </div>
+            <div class="form-group mb-3">
+                <label for="sdt">Số điện thoại:</label>
+                <input type="text" id="sdt" class="form-control" th:field="*{sdt}">
+            </div>
+            <div class="form-group mb-3">
+                <label for="ngaySinh">Ngày sinh:</label>
+                <input type="date" id="ngaySinh" class="form-control" th:field="*{ngaySinh}">
+            </div>
+            <div class="form-group mb-3">
+                <label for="email">Email:</label>
+                <input type="text" id="email" class="form-control" th:field="*{email}">
+            </div>
+            <div class="form-group mb-3">
+                <label for="matKhau">Mật khẩu:</label>
+                <input type="password" id="matKhau" class="form-control" th:field="*{matKhau}">
+            </div>
+            <button type="submit" class="btn btn-primary">Lưu</button>
+            <a href="/nguoidung/all" class="btn btn-secondary">Hủy</a>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
