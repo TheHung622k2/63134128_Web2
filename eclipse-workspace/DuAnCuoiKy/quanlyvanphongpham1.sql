@@ -15,6 +15,8 @@ CREATE TABLE IF NOT EXISTS nguoidung (
     email VARCHAR(100)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+DROP TABLE IF EXISTS nguoidung;
+
 -- Bảng 'nhacungcap'
 CREATE TABLE IF NOT EXISTS nhacungcap (
     ma_nha_cung_cap INT AUTO_INCREMENT PRIMARY KEY,
@@ -68,16 +70,18 @@ CREATE TABLE IF NOT EXISTS hoadon (
     FOREIGN KEY (user_id) REFERENCES nguoidung(user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO nguoidung (ten_dang_nhap, quyen, mat_khau, ho_va_ten, email)
+DROP TABLE IF EXISTS hoadon;
+
+INSERT INTO nguoidung (ten_dang_nhap, quyen, mat_khau, email)
 VALUES 
-('admin', 'Admin', 'adminpass', 'Admin', 'hung.pt.63cntt@ntu.edu.vn');
+('admin', 'Admin', '123456', 'hung.pt.63cntt@ntu.edu.vn');
 
 INSERT INTO nguoidung (ten_dang_nhap, quyen, mat_khau, ho_va_ten, dia_chi, sdt, ngay_sinh, email)
 VALUES 
-('nhanvien1', 'Nhân viên', 'nhanvienpass1', 'Nhân Viên 1', '123 Employee Street', '0123456789', '1992-02-02', 'nhanvien1@example.com'),
-('nhanvien2', 'Nhân viên', 'nhanvienpass2', 'Nhân Viên 2', '456 Employee Street', '0123456789', '1997-07-07', 'nhanvien2@example.com'),
-('nhanvien3', 'Nhân viên', 'nhanvienpass3', 'Nhân Viên 3', '789 Employee Street', '0123456789', '1999-09-09', 'nhanvien3@example.com'),
-('nhanvien4', 'Nhân viên', 'nhanvienpass4', 'Nhân Viên 4', '1011 Employee Street', '0123456789', '2000-10-10', 'nhanvien4@example.com');
+('nguyenvana_emp', 'Nhân viên', 'nguyenvana123', 'Nguyễn Văn A', '123 Employee Street', '0123456789', '1992-02-02', 'nhanvien1@example.com'),
+('tranvanb_emp', 'Nhân viên', 'tranducb123', 'Trần Văn Bình', '456 Employee Street', '0123456789', '1997-07-07', 'nhanvien2@example.com'),
+('lechic_emp', 'Nhân viên', 'lechic123', 'Lê Chí Cường', '789 Employee Street', '0123456789', '1999-09-09', 'nhanvien3@example.com'),
+('duongvand_emp', 'Nhân viên', 'duongvand123', 'Dương Văn Dũng', '1011 Employee Street', '0123456789', '2000-10-10', 'nhanvien4@example.com');
 
 INSERT INTO nhacungcap (ten_nha_cung_cap, sdt, dia_chi)
 VALUES 
