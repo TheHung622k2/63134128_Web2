@@ -27,6 +27,11 @@ public class NguoiDungController {
 		return "nguoidung/nguoidung";
 	}
 	
+	@GetMapping("/dangnhap")
+	public String signIn() {
+	    return "dangnhap/sign_in"; // trả về trang đăng nhập
+	}
+	
 	@PostMapping("/login")
 	public String login(@RequestParam("username") String username,
 	                    @RequestParam("password") String password, Model model) {
@@ -41,10 +46,10 @@ public class NguoiDungController {
 	    }
 
 	    if (isAuthenticated) {
-	        return "redirect:/admin.html"; // chuyển hướng tới admin.html
+	        return "admin/admin"; // chuyển hướng tới admin.html
 	    } else {
 	        model.addAttribute("error", "Tên đăng nhập hoặc mật khẩu không đúng!");
-	        return "sign_in"; // trả về trang đăng nhập với thông báo lỗi
+	        return "dangnhap/sign_in"; // trả về trang đăng nhập với thông báo lỗi
 	    }
 	}
 }
