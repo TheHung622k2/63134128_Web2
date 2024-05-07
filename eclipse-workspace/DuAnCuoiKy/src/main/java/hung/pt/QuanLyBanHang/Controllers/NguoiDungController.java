@@ -70,11 +70,21 @@ public class NguoiDungController {
 	                     @RequestParam("diaChi") String diaChi,
 	                     @RequestParam("ngaySinh") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date ngaySinh,
 	                     Model model) {
+	    // Lưu các giá trị của form vào model
+	    model.addAttribute("username", username);
+	    model.addAttribute("hoVaTen", hoVaTen);
+	    model.addAttribute("email", email);
+	    model.addAttribute("sdt", sdt);
+	    model.addAttribute("diaChi", diaChi);
+	    model.addAttribute("ngaySinh", ngaySinh);
+
+	    // Kiểm tra xác nhận mật khẩu
 	    if (!password.equals(confirmPassword)) {
 	        model.addAttribute("confirmPasswordError", "Mật khẩu xác nhận không trùng khớp!");
 	        return "dangky/sign_up";
 	    }
 
+	    // Kiểm tra mật khẩu bị trùng khớp
 	    List<NguoiDung> nguoiDungs = nguoiDungService.getNguoiDungsByTenDangNhap(username);
 	    for (NguoiDung nguoiDung : nguoiDungs) {
 	        if (nguoiDung.getMatKhau().equals(password)) {
@@ -83,6 +93,7 @@ public class NguoiDungController {
 	        }
 	    }
 
+	    // Tạo và lưu người dùng mới
 	    NguoiDung nguoiDung = new NguoiDung(username, "Nhân viên", password, hoVaTen, diaChi, sdt, ngaySinh, email);
 	    nguoiDungService.saveNguoiDung(nguoiDung);
 
