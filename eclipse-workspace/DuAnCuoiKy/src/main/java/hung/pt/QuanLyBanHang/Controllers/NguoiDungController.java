@@ -36,7 +36,7 @@ public class NguoiDungController {
         return "dangnhap/sign_in";
     }
     
-    @PostMapping("/login")
+    @PostMapping("/dangnhap")
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password, Model model) {
         List<NguoiDung> nguoiDungs = nguoiDungService.getNguoiDungsByTenDangNhap(username);
@@ -123,7 +123,7 @@ public class NguoiDungController {
 
     @PostMapping("/sua")
     public String suaNguoiDung(@RequestParam("userId") int userId, NguoiDung nguoiDung) {
-        nguoiDung.setUserId(userId); // Đảm bảo ID được đặt
+        nguoiDung.setUserId(userId);
         nguoiDungService.saveNguoiDung(nguoiDung);
         return "redirect:/nguoidung/all";
     }

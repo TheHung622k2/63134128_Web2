@@ -1,51 +1,85 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh sách sản phẩm</title>
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <style>
+    .table-img {
+        width: 50px;
+        height: auto;
+        transition: transform 0.3s;
+    }
+    .table-img:hover {
+        transform: scale(1.5);
+    }
+    .btn-action {
+        margin-right: 4px;
+    }
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 90%; /* Đảm bảo container-xxl chiếm toàn bộ chiều rộng của màn hình */
+    }
+    table tr td, table tr th {
+        border-right: 1px solid #dee2e6; /* Viền phải cho mỗi ô */
+        border-bottom: 1px solid #dee2e6; /* Viền dưới cho mỗi ô */
+        text-align: center; /* Canh giữa nội dung trong ô */
+        vertical-align: middle; /* Canh giữa nội dung theo chiều dọc */
+    }
+    table tr th, table tr td {
+        padding: 8px; /* Thêm đệm vào ô để có không gian giữa văn bản và viền */
+    }
+    table tr th:last-child, table tr td:last-child {
+        border-right: none; /* Xóa viền phải cho cột cuối cùng */
+    }
+</style>
+
 </head>
 <body>
     <div class="container mt-5">
         <h1 class="mb-4">Danh sách sản phẩm</h1>
+        <div>
+            <a href="/sanpham/them" class="btn btn-primary mb-3">Thêm sản phẩm mới</a>
+        </div>
         <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
+            <table class="table table-hover align-middle">
+                <thead class="table-dark">
                     <tr>
-                        <th scope="col">Mã sản phẩm</th>
+                        <th scope="col">STT</th>
                         <th scope="col">Tên sản phẩm</th>
                         <th scope="col">Nhà cung cấp</th>
-                        <th scope="col">Số lượng</th>
+                        <th scope="col">SL</th>
                         <th scope="col">Loại</th>
                         <th scope="col">Thương hiệu</th>
                         <th scope="col">Nơi gia công và sản xuất</th>
                         <th scope="col">Giá tiền</th>
-                        <th scope="col">Mô tả</th>
                         <th scope="col">Ảnh</th>
+                        <th scope="col">Hành động</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Thymeleaf loop here -->
-                    <tr th:each="sanPham : ${dsSanPham}">
-                        <td th:text="${sanPham.maSanPham}"></td>
+                    <tr th:each="sanPham, iterStat : ${dsSanPham}">
+                        <td th:text="${iterStat.index + 1}"></td>
                         <td th:text="${sanPham.tenSanPham}"></td>
                         <td th:text="${sanPham.nhaCungCap.tenNhaCungCap}"></td>
                         <td th:text="${sanPham.soLuong}"></td>
                         <td th:text="${sanPham.loai.tenLoai}"></td>
                         <td th:text="${sanPham.thuongHieu.tenThuongHieu}"></td>
                         <td th:text="${sanPham.noiGiaCongVaSanXuat.tenNoiGiaCongVaSanXuat}"></td>
-                        <td th:text="${sanPham.giaTien}"></td>
-                        <td th:text="${sanPham.moTa}"></td>
-                        <td><img th:src="@{${sanPham.anhSp}}" alt="Ảnh sản phẩm" width="100"/></td>
+                        <td th:text="|${#numbers.formatDecimal(sanPham.giaTien, 0, 'COMMA', 0, 'POINT')} đ|"></td>
+                        <td><img th:src="@{${sanPham.anhSp}}" alt="Ảnh sản phẩm" class="table-img"/></td>
+                        <td>
+                        	<a th:href="@{/sanpham/chitiet/{id}(id=${sanPham.maSanPham})}" class="btn btn-info btn-action">Chi tiết</a>
+                            <a th:href="@{/sanpham/sua/{id}(id=${sanPham.maSanPham})}" class="btn btn-success btn-action">Sửa</a>
+                            <a th:href="@{/sanpham/xoa/{id}(id=${sanPham.maSanPham})}" class="btn btn-danger btn-action" onclick="return confirm('Bạn có chắc muốn xóa người dùng này không?')">Xóa</a>                          
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-
-    <!-- Bootstrap JS -->
-    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
