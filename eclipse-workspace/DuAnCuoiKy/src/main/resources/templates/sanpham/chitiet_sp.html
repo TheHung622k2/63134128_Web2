@@ -52,13 +52,14 @@
                 <p><strong>Loại:</strong> <span th:text="${sanPham.loai.tenLoai}"></span></p>
                 <p><strong>Thương Hiệu:</strong> <span th:text="${sanPham.thuongHieu.tenThuongHieu}"></span></p>
                 <p><strong>Nơi Gia Công và Sản Xuất:</strong> <span th:text="${sanPham.noiGiaCongVaSanXuat.tenNoiGiaCongVaSanXuat}"></span></p>
-                <p><strong>Giá Tiền:</strong> <span th:text="${sanPham.giaTien}"></span> VND</p>
+                <p><strong>Giá Tiền:</strong> <span th:text="|${#numbers.formatDecimal(sanPham.giaTien, 0, 'COMMA', 0, 'POINT')} đ|"></span> </p>
                 <p><strong>Mô Tả:</strong> <span th:text="${sanPham.moTa}"></span></p>
             </div>
         </div>
         <div class="action-buttons text-center">
             <a class="btn btn-primary" th:href="@{/sanpham/sua/{id}(id=${sanPham.maSanPham})}">Chỉnh Sửa</a>
             <a class="btn btn-danger" th:href="@{/sanpham/xoa/{id}(id=${sanPham.maSanPham})}" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?')">Xóa</a>
+            <a class="btn btn-secondary" th:href="@{/sanpham/all}">Quay lại</a>
         </div>
     </div>
     <!-- Bootstrap Bundle with Popper -->

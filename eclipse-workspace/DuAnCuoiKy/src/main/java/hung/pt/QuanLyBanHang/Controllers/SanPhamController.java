@@ -11,8 +11,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import hung.pt.QuanLyBanHang.Models.Loai;
+import hung.pt.QuanLyBanHang.Models.NhaCungCap;
+import hung.pt.QuanLyBanHang.Models.NoiGiaCongVaSanXuat;
 import hung.pt.QuanLyBanHang.Models.SanPham;
+import hung.pt.QuanLyBanHang.Models.ThuongHieu;
+import hung.pt.QuanLyBanHang.Services.LoaiService;
+import hung.pt.QuanLyBanHang.Services.NhaCungCapService;
+import hung.pt.QuanLyBanHang.Services.NoiGiaCongVaSanXuatService;
 import hung.pt.QuanLyBanHang.Services.SanPhamService;
+import hung.pt.QuanLyBanHang.Services.ThuongHieuService;
 
 @Controller
 @RequestMapping("/sanpham")
@@ -20,6 +29,18 @@ public class SanPhamController {
 
     @Autowired
     private SanPhamService sanPhamService;
+    
+    @Autowired
+    private NhaCungCapService nhaCungCapService;
+    
+    @Autowired
+    private LoaiService loaiService;
+    
+    @Autowired
+    private ThuongHieuService thuongHieuService;
+    
+    @Autowired
+    private NoiGiaCongVaSanXuatService noiGiaCongVaSanXuatService;
 
     @GetMapping("/all")
     public String getAllSanPhams(Model model) {
@@ -31,6 +52,23 @@ public class SanPhamController {
     @GetMapping("/them")
     public String themSanPhamForm(Model model) {
         model.addAttribute("sanPham", new SanPham());
+        
+        // Truy vấn danh sách nhà cung cấp và thêm vào model
+        List<NhaCungCap> listNhaCungCap = nhaCungCapService.getAllNhaCungCap();
+        model.addAttribute("listNhaCungCap", listNhaCungCap);
+        
+        // Truy vấn danh sách loại và thêm vào model
+        List<Loai> listLoai = loaiService.getAllLoai();
+        model.addAttribute("listLoai", listLoai);
+        
+        // Truy vấn danh sách thương hiệu và thêm vào model
+        List<ThuongHieu> listThuongHieu = thuongHieuService.getAllThuongHieu();
+        model.addAttribute("listThuongHieu", listThuongHieu);
+        
+        // Truy vấn danh sách nơi gia công và sản xuất và thêm vào model
+        List<NoiGiaCongVaSanXuat> listNoiGiaCongVaSanXuat = noiGiaCongVaSanXuatService.getAllNoiGiaCongVaSanXuat();
+        model.addAttribute("listNoiGiaCongVaSanXuat", listNoiGiaCongVaSanXuat);
+
         return "sanpham/them_sp";
     }
 
@@ -45,6 +83,22 @@ public class SanPhamController {
         Optional<SanPham> optionalSanPham = sanPhamService.getSanPhamById(id);
         if (optionalSanPham.isPresent()) {
             model.addAttribute("sanPham", optionalSanPham.get());
+            // Truy vấn danh sách nhà cung cấp và thêm vào model
+            List<NhaCungCap> listNhaCungCap = nhaCungCapService.getAllNhaCungCap();
+            model.addAttribute("listNhaCungCap", listNhaCungCap);
+            
+            // Truy vấn danh sách loại và thêm vào model
+            List<Loai> listLoai = loaiService.getAllLoai();
+            model.addAttribute("listLoai", listLoai);
+            
+            // Truy vấn danh sách thương hiệu và thêm vào model
+            List<ThuongHieu> listThuongHieu = thuongHieuService.getAllThuongHieu();
+            model.addAttribute("listThuongHieu", listThuongHieu);
+            
+            // Truy vấn danh sách nơi gia công và sản xuất và thêm vào model
+            List<NoiGiaCongVaSanXuat> listNoiGiaCongVaSanXuat = noiGiaCongVaSanXuatService.getAllNoiGiaCongVaSanXuat();
+            model.addAttribute("listNoiGiaCongVaSanXuat", listNoiGiaCongVaSanXuat);
+
             return "sanpham/sua_sp";
         } else {
             return "redirect:/sanpham/all";
