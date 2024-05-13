@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Chi tiết nhà cung cấp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #007bff;
+            text-align: center;
+            font-weight: bold;
+        }
+        .card {
+            margin-top: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .card-title {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+        .card-text {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+        .card-text span.bold {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Thông tin nhà cung cấp</h1>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${nhaCungCap.tenNhaCungCap}"></h5>
+                <p class="card-text"><span class="bold">Mã nhà cung cấp:</span> <span th:text="${nhaCungCap.maNhaCungCap}"></span></p>
+                <p class="card-text"><span class="bold">Số điện thoại:</span> <span th:text="${nhaCungCap.sdt}"></span></p>
+                <p class="card-text"><span class="bold">Địa chỉ:</span> <span th:text="${nhaCungCap.diaChi}"></span></p>
+                <a href="#" class="btn btn-secondary" onclick="history.back(); return false;">Quay lại</a>
+            </div>
+        </div>
+    </div>
+    <!-- Liên kết tới tệp JavaScript của Bootstrap (nếu cần) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>    
+</body>
+</html>

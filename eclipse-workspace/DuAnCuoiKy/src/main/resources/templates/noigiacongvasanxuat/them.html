@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm nơi gia công và sản xuất</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Thêm nơi gia công và sản xuất</h1>
+        <form action="#" th:action="@{/noigiacongvasanxuat/add}" th:object="${noiGiaCongVaSanXuat}" method="post">
+            <div class="mb-3">
+                <label for="tenNoiGiaCongVaSanXuat" class="form-label">Tên nơi gia công và sản xuất</label>
+                <input type="text" class="form-control" id="tenNoiGiaCongVaSanXuat" th:field="*{tenNoiGiaCongVaSanXuat}">
+            </div>
+            <button type="submit" class="btn btn-primary">Thêm</button>
+            <a href="#" class="btn btn-secondary" onclick="history.back(); return false;">Hủy</a>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

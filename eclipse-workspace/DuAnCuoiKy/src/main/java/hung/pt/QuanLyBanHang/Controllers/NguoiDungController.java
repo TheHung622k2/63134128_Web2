@@ -37,19 +37,21 @@ public class NguoiDungController {
     }
     
     @PostMapping("/dangnhap")
-    public String login(@RequestParam("username") String username,
-                        @RequestParam("password") String password, Model model) {
+    public String login(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
         List<NguoiDung> nguoiDungs = nguoiDungService.getNguoiDungsByTenDangNhap(username);
         boolean isAuthenticated = false;
+        NguoiDung authenticatedUser = null;
 
         for (NguoiDung nguoiDung : nguoiDungs) {
             if (nguoiDung.getMatKhau().equals(password)) {
                 isAuthenticated = true;
+                authenticatedUser = nguoiDung;
                 break;
             }
         }
 
-        if (isAuthenticated) {
+        if (isAuthenticated && authenticatedUser != null) {
+            model.addAttribute("authenticatedUser", authenticatedUser);
             return "admin/admin";
         } else {
             model.addAttribute("error", "Tên đăng nhập hoặc mật khẩu sai!");

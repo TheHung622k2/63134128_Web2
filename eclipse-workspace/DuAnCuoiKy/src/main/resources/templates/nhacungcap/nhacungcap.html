@@ -3,7 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <title>Danh sách nhà cung cấp</title>
-    <link rel="stylesheet" href="/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-top: 50px;
+        }
+        h1 {
+            color: #007bff;
+        }
+        .table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .table th, .table td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+        }
+        .table th {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #f8f9fa;
+        }
+        .table-striped tbody tr:hover {
+            background-color: #e9ecef;
+        }
+        .btn {
+            padding: 6px 12px;
+            font-size: 14px;
+            border-radius: 4px;
+            margin-top: 4px;
+        }
+        .btn-info {
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+        }
+        .btn-info:hover {
+            background-color: #138496;
+            border-color: #117a8b;
+        }
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -11,10 +79,11 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Mã nhà cung cấp</th>
-                    <th>Tên nhà cung cấp</th>
-                    <th>Số điện thoại</th>
-                    <th>Địa chỉ</th>
+                    <th scope="col">Mã nhà cung cấp</th>
+                    <th scope="col">Tên nhà cung cấp</th>
+                    <th scope="col">Số điện thoại</th>
+                    <th scope="col">Địa chỉ</th>
+                    <th scope="col">Thao tác</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,11 +92,17 @@
                     <td th:text="${nhaCungCap.tenNhaCungCap}"></td>
                     <td th:text="${nhaCungCap.sdt}"></td>
                     <td th:text="${nhaCungCap.diaChi}"></td>
+                    <td>
+                        <a th:href="@{/nhacungcap/detail/{id}(id=${nhaCungCap.maNhaCungCap})}" class="btn btn-info btn-sm">Xem chi tiết</a>
+                        <a th:href="@{/nhacungcap/edit/{id}(id=${nhaCungCap.maNhaCungCap})}" class="btn btn-primary btn-sm">Chỉnh sửa</a>
+                        <a th:href="@{/nhacungcap/delete/{id}(id=${nhaCungCap.maNhaCungCap})}" class="btn btn-danger btn-sm">Xóa</a>
+                    </td>
                 </tr>
             </tbody>
         </table>
+        <a href="/nhacungcap/add" class="btn btn-success">Thêm nhà cung cấp mới</a>
     </div>
-<!-- Liên kết tới tệp JavaScript của Bootstrap (nếu cần) -->
-<script src="/js/bootstrap.bundle.min.js"></script>    
+    <!-- Liên kết tới tệp JavaScript của Bootstrap (nếu cần) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>    
 </body>
 </html>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh sách nơi gia công và sản xuất</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container mt-5">
@@ -16,20 +16,29 @@
                     <tr>
                         <th scope="col">Mã nơi gia công</th>
                         <th scope="col">Tên nơi gia công</th>
+                        <th scope="col">Thao tác</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- Thymeleaf loop here -->
                     <tr th:each="noiGiaCong : ${dsNoiGiaCongVaSanXuat}">
-                        <td th:text="${noiGiaCong.maNoiGiaCongVaSanXuat}"></td>
-                        <td th:text="${noiGiaCong.tenNoiGiaCongVaSanXuat}"></td>
-                    </tr>
+    <td th:text="${noiGiaCong.maNoiGiaCongVaSanXuat}"></td>
+    <td th:text="${noiGiaCong.tenNoiGiaCongVaSanXuat}"></td>
+    <td>
+        <a th:href="@{/noigiacongvasanxuat/detail/{id}(id=${noiGiaCong.maNoiGiaCongVaSanXuat})}" class="btn btn-primary btn-sm">Xem chi tiết</a>
+        <a th:href="@{/noigiacongvasanxuat/edit/{id}(id=${noiGiaCong.maNoiGiaCongVaSanXuat})}" class="btn btn-warning btn-sm">Sửa</a>
+        <a th:href="@{/noigiacongvasanxuat/delete/{id}(id=${noiGiaCong.maNoiGiaCongVaSanXuat})}" class="btn btn-danger btn-sm btn-action" 
+            onclick="return confirm('Bạn có chắc muốn xóa nơi gia công và sản xuất này không?')">Xóa</a>
+    </td>
+</tr>
+
                 </tbody>
             </table>
         </div>
+        <a href="/noigiacongvasanxuat/add" class="btn btn-success">Thêm nơi gia công mới</a>
     </div>
 
     <!-- Bootstrap JS -->
-    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

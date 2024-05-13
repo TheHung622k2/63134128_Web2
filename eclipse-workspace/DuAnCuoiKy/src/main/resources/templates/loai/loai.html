@@ -5,7 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh sách loại</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f7fa;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        .container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            font-size: 24px;
+        }
+        .table {
+            margin-top: 20px;
+        }
+        .btn {
+            margin: 2px;
+        }
+        .btn-sm {
+            transition: transform 0.2s ease-in-out;
+        }
+        .btn-sm:hover {
+            transform: scale(1.05);
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
@@ -16,6 +48,7 @@
                     <tr>
                         <th scope="col">Mã loại</th>
                         <th scope="col">Tên loại</th>
+                        <th scope="col">Thao tác</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,13 +56,19 @@
                     <tr th:each="loai : ${dsLoai}">
                         <td th:text="${loai.maLoai}"></td>
                         <td th:text="${loai.tenLoai}"></td>
+                        <td>
+                            <a th:href="@{/loai/detail/{id}(id=${loai.maLoai})}" class="btn btn-primary btn-sm">Xem chi tiết</a>
+                            <a th:href="@{/loai/edit/{id}(id=${loai.maLoai})}" class="btn btn-warning btn-sm">Sửa</a>
+                            <a th:href="@{/loai/delete/{id}(id=${loai.maLoai})}" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc muốn xóa loại sản phẩm này không?')">Xóa</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        <a href="/loai/add" class="btn btn-success">Thêm loại mới</a>
     </div>
 
     <!-- Bootstrap JS -->
-    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

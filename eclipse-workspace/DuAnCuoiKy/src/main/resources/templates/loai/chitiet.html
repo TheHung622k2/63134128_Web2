@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Chi tiết loại sản phẩm</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Chi tiết loại sản phẩm</h1>
+        <div class="mb-3">
+            <label class="form-label">Mã loại:</label>
+            <span th:text="${loai.maLoai}"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Tên loại:</label>
+            <span th:text="${loai.tenLoai}"></span>
+        </div>
+        <a href="/loai/all" class="btn btn-primary">Quay lại</a>
+    </div>
+</body>
+</html>

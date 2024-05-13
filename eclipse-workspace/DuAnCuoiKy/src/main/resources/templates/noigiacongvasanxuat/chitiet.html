@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết nơi gia công và sản xuất</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Chi tiết nơi gia công và sản xuất</h1>
+        <div class="mb-3">
+            <label class="form-label">Mã nơi gia công và sản xuất</label>
+            <p class="form-control-static" th:text="${noiGiaCongVaSanXuat.maNoiGiaCongVaSanXuat}"></p>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Tên nơi gia công và sản xuất</label>
+            <p class="form-control-static" th:text="${noiGiaCongVaSanXuat.tenNoiGiaCongVaSanXuat}"></p>
+        </div>
+        <a href="/noigiacongvasanxuat/all" class="btn btn-primary">Quay lại</a>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

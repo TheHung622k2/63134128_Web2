@@ -4,32 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh sách thương hiệu</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="mb-4">Danh sách thương hiệu</h1>
+        <h1 class="mb-4">Danh Sách Thương Hiệu</h1>
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">Mã thương hiệu</th>
-                        <th scope="col">Tên thương hiệu</th>
+                        <th scope="col">Mã Thương Hiệu</th>
+                        <th scope="col">Tên Thương Hiệu</th>
+                        <th scope="col">Thao Tác</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Thymeleaf loop here -->
                     <tr th:each="thuongHieu : ${dsThuongHieu}">
                         <td th:text="${thuongHieu.maThuongHieu}"></td>
                         <td th:text="${thuongHieu.tenThuongHieu}"></td>
+                        <td>
+                            <a th:href="@{/thuonghieu/edit/{id}(id=${thuongHieu.maThuongHieu})}" class="btn btn-primary btn-sm">Chỉnh Sửa</a>
+                            <a th:href="@{/thuonghieu/delete/{id}(id=${thuongHieu.maThuongHieu})}" class="btn btn-danger btn-sm">Xóa</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        <a href="/thuonghieu/add" class="btn btn-success">Thêm Thương Hiệu Mới</a>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
