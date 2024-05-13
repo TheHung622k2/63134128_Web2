@@ -6,38 +6,54 @@
     <title>Danh sách sản phẩm</title>
     <link rel="stylesheet" href="/bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <style>
-    .table-img {
-        width: 50px;
-        height: auto;
-        transition: transform 0.3s;
-    }
-    .table-img:hover {
-        transform: scale(1.5);
-    }
-    .btn-action {
-        margin-right: 4px;
-    }
-    .container {
-        margin-left: auto;
-        margin-right: auto;
-        max-width: 90%; /* Đảm bảo container-xxl chiếm toàn bộ chiều rộng của màn hình */
-    }
-    table tr td, table tr th {
-        border-right: 1px solid #dee2e6; /* Viền phải cho mỗi ô */
-        border-bottom: 1px solid #dee2e6; /* Viền dưới cho mỗi ô */
-        text-align: center; /* Canh giữa nội dung trong ô */
-        vertical-align: middle; /* Canh giữa nội dung theo chiều dọc */
-    }
-    table tr th, table tr td {
-        padding: 8px; /* Thêm đệm vào ô để có không gian giữa văn bản và viền */
-    }
-    table tr th:last-child, table tr td:last-child {
-        border-right: none; /* Xóa viền phải cho cột cuối cùng */
-    }
-</style>
-
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            flex: 1;
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 90%;
+        }
+        footer {
+            margin-top: auto;
+        }
+        .table-img {
+            width: 50px;
+            height: auto;
+            transition: transform 0.3s;
+        }
+        .table-img:hover {
+            transform: scale(1.5);
+        }
+        .btn-action {
+            margin-right: 4px;
+        }
+        table tr td,
+        table tr th {
+            border-right: 1px solid #dee2e6;
+            border-bottom: 1px solid #dee2e6;
+            text-align: center;
+            vertical-align: middle;
+            padding: 8px;
+        }
+        table tr th:last-child,
+        table tr td:last-child {
+            border-right: none;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+        }
+    </style>
 </head>
 <body>
+    <div th:replace="fragments/navbar :: navbarFragment"></div>
     <div class="container mt-5">
         <h1 class="mb-4">Danh sách sản phẩm</h1>
         <div>
@@ -61,7 +77,7 @@
                 </thead>
                 <tbody>
                     <tr th:each="sanPham, iterStat : ${dsSanPham}">
-                        <td th:text="${iterStat.index + 1}"></td>
+                        <td th:text="${iterStat.index + 1 + (dsSanPham.number * dsSanPham.size)}"></td>
                         <td th:text="${sanPham.tenSanPham}"></td>
                         <td th:text="${sanPham.nhaCungCap.tenNhaCungCap}"></td>
                         <td th:text="${sanPham.soLuong}"></td>
@@ -71,7 +87,7 @@
                         <td th:text="|${#numbers.formatDecimal(sanPham.giaTien, 0, 'COMMA', 0, 'POINT')} đ|"></td>
                         <td><img th:src="@{${sanPham.anhSp}}" alt="Ảnh sản phẩm" class="table-img"/></td>
                         <td>
-                        	<a th:href="@{/sanpham/chitiet/{id}(id=${sanPham.maSanPham})}" class="btn btn-info btn-action">Chi tiết</a>
+                            <a th:href="@{/sanpham/chitiet/{id}(id=${sanPham.maSanPham})}" class="btn btn-info btn-action">Chi tiết</a>
                             <a th:href="@{/sanpham/sua/{id}(id=${sanPham.maSanPham})}" class="btn btn-success btn-action">Sửa</a>
                             <a th:href="@{/sanpham/xoa/{id}(id=${sanPham.maSanPham})}" class="btn btn-danger btn-action" onclick="return confirm('Bạn có chắc muốn xóa người dùng này không?')">Xóa</a>                          
                         </td>
@@ -79,7 +95,18 @@
                 </tbody>
             </table>
         </div>
+        <!-- Pagination controls -->
+        <div class="pagination d-flex justify-content-center mt-4">
+            <a th:href="@{/sanpham/all(page=${dsSanPham.number - 1})}" th:if="${dsSanPham.hasPrevious()}" class="btn btn-primary btn-sm me-2">
+                Trang Trước
+            </a>
+            <span class="align-self-center me-2">Trang [[${dsSanPham.number + 1}]] trên [[${dsSanPham.totalPages}]]</span>
+            <a th:href="@{/sanpham/all(page=${dsSanPham.number + 1})}" th:if="${dsSanPham.hasNext()}" class="btn btn-primary btn-sm">
+                Trang Sau
+            </a>
+        </div>     
     </div>
+    <div th:replace="fragments/footer :: footerFragment"></div>
     <script src="/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

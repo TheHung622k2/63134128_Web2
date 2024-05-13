@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,8 +46,9 @@ public class SanPhamController {
     private NoiGiaCongVaSanXuatService noiGiaCongVaSanXuatService;
 
     @GetMapping("/all")
-    public String getAllSanPhams(Model model) {
-        List<SanPham> dsSanPham = sanPhamService.getAllSanPhams();
+    public String getAllSanPhams(@RequestParam(defaultValue = "0") int page, Model model) {
+        Pageable pageable = PageRequest.of(page, 10); // 10 sản phẩm mỗi trang
+        Page<SanPham> dsSanPham = sanPhamService.getAllSanPhams(pageable);
         model.addAttribute("dsSanPham", dsSanPham);
         return "sanpham/sanpham";
     }

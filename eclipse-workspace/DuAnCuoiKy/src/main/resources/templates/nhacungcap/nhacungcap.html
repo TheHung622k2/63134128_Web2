@@ -5,21 +5,32 @@
     <title>Danh sách nhà cung cấp</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
     <style>
-        body {
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
             background-color: #f8f9fa;
             font-family: Arial, sans-serif;
         }
         .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+            flex: 1;
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 90%;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 20px;
             margin-top: 50px;
+        }
+        footer {
+            margin-top: auto;
         }
         h1 {
             color: #007bff;
+            margin-top: 0;
         }
         .table {
             border-collapse: collapse;
@@ -74,6 +85,7 @@
     </style>
 </head>
 <body>
+    <div th:replace="fragments/navbar :: navbarFragment"></div>
     <div class="container">
         <h1 class="mt-5 mb-4">Danh sách nhà cung cấp</h1>
         <table class="table table-striped">
@@ -102,7 +114,7 @@
         </table>
         <a href="/nhacungcap/add" class="btn btn-success">Thêm nhà cung cấp mới</a>
     </div>
-    <!-- Liên kết tới tệp JavaScript của Bootstrap (nếu cần) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>    
+    <div th:replace="fragments/footer :: footerFragment"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import hung.pt.QuanLyBanHang.Models.SanPham;
 import hung.pt.QuanLyBanHang.Repositories.SanPhamRepository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 @Service
 public class SanPhamServiceImpl implements SanPhamService {
 
@@ -44,4 +47,9 @@ public class SanPhamServiceImpl implements SanPhamService {
 	public List<SanPham> getSanPhamsByGiaTienBetween(float minGiaTien, float maxGiaTien) {
 		return sanPhamRepository.findByGiaTienBetween(minGiaTien, maxGiaTien);
 	}
+	
+	@Override
+    public Page<SanPham> getAllSanPhams(Pageable pageable) {
+        return sanPhamRepository.findAll(pageable);
+    }
 }

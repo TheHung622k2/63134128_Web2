@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import hung.pt.QuanLyBanHang.Models.NguoiDung;
 import hung.pt.QuanLyBanHang.Services.NguoiDungService;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/nguoidung")
@@ -37,7 +38,7 @@ public class NguoiDungController {
     }
     
     @PostMapping("/dangnhap")
-    public String login(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
+    public String login(@RequestParam("username") String username, @RequestParam("password") String password, Model model, HttpSession session) {
         List<NguoiDung> nguoiDungs = nguoiDungService.getNguoiDungsByTenDangNhap(username);
         boolean isAuthenticated = false;
         NguoiDung authenticatedUser = null;
@@ -51,14 +52,22 @@ public class NguoiDungController {
         }
 
         if (isAuthenticated && authenticatedUser != null) {
-            model.addAttribute("authenticatedUser", authenticatedUser);
-            return "admin/admin";
+            session.setAttribute("authenticatedUser", authenticatedUser); // Lưu thông tin người dùng vào session
+            if ("Admin".equals(authenticatedUser.getQuyen())) {
+                return "admin/admin"; // Chuyển hướng đến trang Admin
+            } else if ("Nhân viên".equals(authenticatedUser.getQuyen())) {
+                return "employee/nhanvien"; // Chuyển hướng đến trang Nhân viên
+            } else {
+                // Trường hợp này có thể xảy ra nếu có quyền khác không được xử lý
+                model.addAttribute("error", "Không có quyền truy cập phù hợp!");
+                return "dangnhap/sign_in";
+            }
         } else {
             model.addAttribute("error", "Tên đăng nhập hoặc mật khẩu sai!");
             return "dangnhap/sign_in";
         }
     }
-    
+
     @GetMapping("/dangky")
     public String signUp() {
         return "dangky/sign_up";
@@ -99,6 +108,13 @@ public class NguoiDungController {
 
         return "dangnhap/sign_in";
     }
+    
+    @GetMapping("/dangxuat")
+    public String logout(HttpSession session) {
+        session.removeAttribute("authenticatedUser"); // Xóa thông tin người dùng khỏi session
+        return "redirect:/home"; // Chuyển hướng về trang đăng nhập
+    }
+
     
     @GetMapping("/them")
     public String themNguoiDungForm(Model model) {
