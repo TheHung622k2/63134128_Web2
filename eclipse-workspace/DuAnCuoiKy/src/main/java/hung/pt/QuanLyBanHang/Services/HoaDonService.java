@@ -23,4 +23,6 @@ public interface HoaDonService {
 	List<HoaDon> getHoaDonByYear(int year);
 	
 	List<Object[]> getMonthlyRevenueByYear(int year);
+	
+	List<Object[]> getMonthlyRevenueByYearAndMonthRange(int year, int startMonth, int endMonth);
 }

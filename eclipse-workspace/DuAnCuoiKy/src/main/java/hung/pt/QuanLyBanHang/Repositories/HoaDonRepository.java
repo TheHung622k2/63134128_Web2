@@ -23,4 +23,7 @@ public interface HoaDonRepository extends JpaRepository<HoaDon, Integer> {
 	
 	@Query("SELECT MONTH(h.ngayLap) AS month, SUM(h.tongTien) AS total FROM HoaDon h WHERE YEAR(h.ngayLap) = :year GROUP BY MONTH(h.ngayLap)")
     List<Object[]> findMonthlyRevenueByYear(@Param("year") int year);
+    
+    @Query("SELECT MONTH(h.ngayLap) AS month, SUM(h.tongTien) AS total FROM HoaDon h WHERE YEAR(h.ngayLap) = :year AND MONTH(h.ngayLap) BETWEEN :startMonth AND :endMonth GROUP BY MONTH(h.ngayLap)")
+    List<Object[]> findMonthlyRevenueByYearAndMonthRange(@Param("year") int year, @Param("startMonth") int startMonth, @Param("endMonth") int endMonth);
 }

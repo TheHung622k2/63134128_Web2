@@ -7,9 +7,9 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Monthly Revenue for Year <span th:text="${selectedYear}"></span></h1>
+        <h1 class="text-center mb-4">Doanh thu hàng tháng cho Năm <span th:text="${selectedYear}"></span></h1>
         <form action="/hoadon/revenue" method="get" class="form-inline justify-content-center mb-4">
-            <div class="form-group">
+            <div class="form-group mr-2">
                 <label for="yearSelect" class="mr-2">Select Year:</label>
                 <select id="yearSelect" name="year" class="form-control" onchange="this.form.submit()">
                     <option value="" disabled>Select year</option>
@@ -17,6 +17,21 @@
                             th:selected="${year} == ${selectedYear}"></option>
                 </select>
             </div>
+            <div class="form-group mr-2">
+                <label for="startMonthSelect" class="mr-2">From Month:</label>
+                <select id="startMonthSelect" name="startMonth" class="form-control">
+                    <option value="" disabled selected>Select month</option>
+                    <option th:each="i : ${#numbers.sequence(1, 12)}" th:value="${i}" th:text="${i}"></option>
+                </select>
+            </div>
+            <div class="form-group mr-2">
+                <label for="endMonthSelect" class="mr-2">To Month:</label>
+                <select id="endMonthSelect" name="endMonth" class="form-control">
+                    <option value="" disabled selected>Select month</option>
+                    <option th:each="i : ${#numbers.sequence(1, 12)}" th:value="${i}" th:text="${i}"></option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Filter</button>
         </form>
         <div class="row justify-content-center">
             <div class="col-md-10">
