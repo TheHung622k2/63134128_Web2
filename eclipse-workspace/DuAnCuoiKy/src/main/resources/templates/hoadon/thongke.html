@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Monthly Revenue Chart</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Monthly Revenue for Year <span th:text="${selectedYear}"></span></h1>
+        <form action="/hoadon/filter" method="get" class="form-inline justify-content-center mb-4">
+            <div class="form-group">
+                <label for="yearSelect" class="mr-2">Select Year:</label>
+                <select id="yearSelect" name="year" class="form-control" onchange="this.form.submit()">
+                    <option value="" disabled>Select year</option>
+                    <option th:each="year : ${years}" th:value="${year}" th:text="${year}"
+                            th:selected="${year} == ${selectedYear}"></option>
+                </select>
+            </div>
+        </form>
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <canvas id="revenueChart" width="800" height="400"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var ctx = document.getElementById('revenueChart').getContext('2d');
+        var monthlyRevenue = /*[[${monthlyRevenue}]]*/ [];
+        var labels = monthlyRevenue.map(item => 'Tháng ' + item[0]);
+        var data = monthlyRevenue.map(item => item[1]);
+
+        var chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Doanh thu',
+                    data: data,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        /*]]>*/
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
