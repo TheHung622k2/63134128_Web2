@@ -13,96 +13,71 @@
             margin: 0;
             display: flex;
             flex-direction: column;
-            font-family: Arial, sans-serif; /* Thay đổi font chữ */
+            font-family: Arial, sans-serif;
+            background-image: url('/theme/top-view-office-stationery-with-notepad-elastic-bands.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
         .container {
             flex: 1;
-            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
         }
-        footer {
-            margin-top: auto;
-            background-color: #f8f9fa; /* Màu nền cho footer */
-            padding: 20px 0;
+        h1 {
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            font-weight: bold;
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            display: inline-block;
         }
-        .navbar {
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Thêm đổ bóng cho navbar */
+        .btn-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-        .navbar-nav .nav-item:not(:last-child) {
-            border-right: 1px solid #ccc;
-            padding-right: 10px;
-        }
-        .navbar-nav .nav-item .nav-link {
-            padding-left: 10px;
+        .login-btn, .register-btn {
+            border-radius: 20px;
+            margin: 0 10px;
+            padding: 12px 24px;
+            font-size: 1.25rem;
+            transition: background-color 0.3s, transform 0.3s;
         }
         .login-btn {
             background-color: #007bff;
             color: #fff;
-            border-radius: 20px; /* Làm nút tròn hơn */
-            margin-right: 10px;
+        }
+        .login-btn:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
         }
         .register-btn {
             background-color: #dc3545;
             color: #fff;
-            border-radius: 20px;
+        }
+        .register-btn:hover {
+            background-color: #b21f2d;
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#"><i class="fas fa-home"></i> Trang chủ</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="/sanpham/all"><i class="fas fa-box"></i> Sản Phẩm</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/thuonghieu/all"><i class="fas fa-tag"></i> Thương Hiệu</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/nhacungcap/all"><i class="fas fa-truck"></i> Nhà Cung Cấp</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/loai/all"><i class="fas fa-list"></i> Loại Sản Phẩm</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/noigiacongvasanxuat/all"><i class="fas fa-industry"></i> Nơi Gia Công &amp; Sản Xuất</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/nguoidung/all"><i class="fas fa-users"></i> Người Dùng</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/hoadon/all"><i class="fas fa-file-invoice"></i> Hóa Đơn</a>
-                </li>
-            </ul>
-        </div>
-        <div class="ml-auto">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link btn login-btn" href="/nguoidung/dangnhap">Đăng nhập</a>                    
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link btn register-btn" href="/nguoidung/dangky">Đăng ký</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
     <div class="container">
-        <!-- Nội dung trang -->
-    </div>
-    <footer>
-        <div class="container text-center">
-            <p>&copy; 2024 Công ty Sản phẩm. All Rights Reserved.</p>
-            <p>
-                <a href="#">Liên hệ</a> | 
-                <a href="#">Chính sách bảo mật</a> | 
-                <a href="#">Điều khoản dịch vụ</a>
-            </p>
+        <h1>Website Quản Lý Văn Phòng Phẩm của nhà sách Fahasa Nha Trang</h1>
+        <div class="btn-container">
+            <a class="btn login-btn" href="/nguoidung/dangnhap">Đăng nhập</a>
+            <a class="btn register-btn" href="/nguoidung/dangky">Đăng ký</a>
         </div>
-    </footer>
+    </div>
+
     <!-- Bootstrap JS -->
     <script src="/js/bootstrap.bundle.min.js"></script>
 </body>
