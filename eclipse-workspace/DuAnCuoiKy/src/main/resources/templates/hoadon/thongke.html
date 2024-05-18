@@ -8,7 +8,7 @@
 <body>
     <div class="container mt-5">
         <h1 class="text-center mb-4">Monthly Revenue for Year <span th:text="${selectedYear}"></span></h1>
-        <form action="/hoadon/filter" method="get" class="form-inline justify-content-center mb-4">
+        <form action="/hoadon/revenue" method="get" class="form-inline justify-content-center mb-4">
             <div class="form-group">
                 <label for="yearSelect" class="mr-2">Select Year:</label>
                 <select id="yearSelect" name="year" class="form-control" onchange="this.form.submit()">
@@ -29,8 +29,13 @@
         /*<![CDATA[*/
         var ctx = document.getElementById('revenueChart').getContext('2d');
         var monthlyRevenue = /*[[${monthlyRevenue}]]*/ [];
-        var labels = monthlyRevenue.map(item => 'Tháng ' + item[0]);
-        var data = monthlyRevenue.map(item => item[1]);
+        var labels = Array.from({length: 12}, (_, i) => 'Tháng ' + (i + 1));
+        var data = Array(12).fill(0);
+
+        monthlyRevenue.forEach(item => {
+            var monthIndex = item[0] - 1; // Assuming item[0] is the month number (1-12)
+            data[monthIndex] = item[1];
+        });
 
         var chart = new Chart(ctx, {
             type: 'bar',

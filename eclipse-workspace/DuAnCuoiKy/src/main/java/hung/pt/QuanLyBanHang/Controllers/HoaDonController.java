@@ -27,22 +27,6 @@ public class HoaDonController {
 	}
 	
 	@GetMapping("/revenue")
-    public String getDistinctYears(Model model) {
-        List<Integer> years = hoaDonService.getDistinctYears();
-        model.addAttribute("years", years);
-        return "hoadon/hoadon";
-    }
-	
-	/*
-	 * @GetMapping("/filter") public String filterHoaDonByYear(@RequestParam("year")
-	 * int year, Model model) { List<Object[]> monthlyRevenue =
-	 * hoaDonService.getMonthlyRevenueByYear(year);
-	 * model.addAttribute("monthlyRevenue", monthlyRevenue);
-	 * model.addAttribute("selectedYear", year); model.addAttribute("years",
-	 * hoaDonService.getDistinctYears()); return "hoadon/chart"; }
-	 */
-	
-	@GetMapping("/filter")
     public String filterHoaDonByYear(@RequestParam(value = "year", required = false, defaultValue = "2024") int year, Model model) {
         List<Object[]> monthlyRevenue = hoaDonService.getMonthlyRevenueByYear(year);
         model.addAttribute("monthlyRevenue", monthlyRevenue);
