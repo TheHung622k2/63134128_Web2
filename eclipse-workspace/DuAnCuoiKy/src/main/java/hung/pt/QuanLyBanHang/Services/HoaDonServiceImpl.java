@@ -42,7 +42,17 @@ public class HoaDonServiceImpl implements HoaDonService {
 	}
 	
 	@Override
-    public List<Object[]> getRevenueByMonth() {
-        return hoaDonRepository.findRevenueByMonth();
+    public List<Integer> getDistinctYears() {
+        return hoaDonRepository.findDistinctYears();
+    }
+	
+	@Override
+    public List<HoaDon> getHoaDonByYear(int year) {
+        return hoaDonRepository.findByYear(year);
+    }
+	
+	@Override
+    public List<Object[]> getMonthlyRevenueByYear(int year) {
+        return hoaDonRepository.findMonthlyRevenueByYear(year);
     }
 }

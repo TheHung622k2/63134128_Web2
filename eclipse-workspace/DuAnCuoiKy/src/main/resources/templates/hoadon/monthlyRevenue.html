@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Monthly Revenue</title>
+</head>
+<body>
+    <h1>Monthly Revenue for Year <span th:text="${selectedYear}"></span></h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Month</th>
+                <th>Total Revenue</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="revenue : ${monthlyRevenue}">
+                <td th:text="${revenue[0]}"></td>
+                <td th:text="${revenue[1]}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

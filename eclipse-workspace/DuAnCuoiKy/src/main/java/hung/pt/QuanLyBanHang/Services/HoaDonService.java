@@ -18,5 +18,9 @@ public interface HoaDonService {
 
 	List<HoaDon> getHoaDonByNgayLap(Date ngayLap);
 	
-	List<Object[]> getRevenueByMonth();
+	List<Integer> getDistinctYears();
+	
+	List<HoaDon> getHoaDonByYear(int year);
+	
+	List<Object[]> getMonthlyRevenueByYear(int year);
 }
