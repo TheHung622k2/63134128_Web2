@@ -17,4 +17,6 @@ public interface HoaDonService {
 	void deleteHoaDonById(int id);
 
 	List<HoaDon> getHoaDonByNgayLap(Date ngayLap);
+	
+	List<Object[]> getRevenueByMonth();
 }

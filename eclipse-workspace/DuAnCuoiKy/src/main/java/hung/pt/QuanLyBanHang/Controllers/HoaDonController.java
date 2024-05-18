@@ -24,4 +24,11 @@ public class HoaDonController {
 		model.addAttribute("dsHoaDon", dsHoaDon);
 		return "hoadon/hoadon";
 	}
+	
+	@GetMapping("/revenue")
+    public String getRevenue(Model model) {
+        List<Object[]> revenueData = hoaDonService.getRevenueByMonth();
+        model.addAttribute("revenueData", revenueData);
+        return "hoadon/hoadon";
+    }
 }

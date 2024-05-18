@@ -40,4 +40,9 @@ public class HoaDonServiceImpl implements HoaDonService {
 	public List<HoaDon> getHoaDonByNgayLap(Date ngayLap) {
 		return hoaDonRepository.findByNgayLap(ngayLap);
 	}
+	
+	@Override
+    public List<Object[]> getRevenueByMonth() {
+        return hoaDonRepository.findRevenueByMonth();
+    }
 }
