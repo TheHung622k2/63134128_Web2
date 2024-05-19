@@ -4,29 +4,87 @@
     <meta charset="UTF-8">
     <title>Trang Nhân Viên</title>
     <link rel="stylesheet" href="/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-    	html, body {
-        height: 100%; /* Thiết lập chiều cao cho body và html */
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-	    }
-	    .container {
-	        flex: 1; /* Cho phép container chiếm phần lớn không gian */
-	        margin-top: 20px;
-	    }
-	    footer {
-	        margin-top: auto; /* Đẩy footer xuống dưới cùng */
-	    }
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            background-image: url('/theme/school-supplies-seamless-pattern-background-free-vector.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .container {
+            flex: 1;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.6); /* White background with transparency */
+            border-radius: 10px;
+            padding: 20px;
+        }
+        footer {
+            margin-top: auto;
+            background-color: #f8f9fa;
+            padding: 20px 0;
+        }
+        .navbar {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-size: 1.25rem;
+            padding: 1rem;
+        }
+        .nav-block {
+            border: 1px solid #dee2e6;
+            margin-bottom: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 20px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: #333;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+        .nav-block:hover {
+            background-color: #007bff;
+            color: #fff;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
-    <div th:replace="fragments/navbar :: navbarFragment"></div>
-    <div class="container">
-        <h1>Chào mừng Nhân viên</h1>
-        <p>Đây là trang dành cho nhân viên.</p>
+    <nav th:replace="fragments/navbar :: navbarFragment"></nav>
+    <div class="container" style="min-height:900px">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div class="nav-item nav-block">
+                    <a class="nav-link" href="/sanpham/all"><i class="fas fa-box"></i> Sản Phẩm</a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div class="nav-item nav-block">
+                    <a class="nav-link" href="/thuonghieu/all"><i class="fas fa-tag"></i> Thương Hiệu</a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div class="nav-item nav-block">
+                    <a class="nav-link" href="/nhacungcap/all"><i class="fas fa-truck"></i> Nhà Cung Cấp</a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div class="nav-item nav-block">
+                    <a class="nav-link" href="/loai/all"><i class="fas fa-list"></i> Loại Sản Phẩm</a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div class="nav-item nav-block">
+                    <a class="nav-link" href="/noigiacongvasanxuat/all"><i class="fas fa-industry"></i> Nơi Gia Công &amp; Sản Xuất</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div th:replace="fragments/footer :: footerFragment"></div>
+    <footer th:replace="fragments/footer :: footerFragment"></footer>
     <script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

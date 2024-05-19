@@ -1,5 +1,6 @@
 package hung.pt.QuanLyBanHang.Services;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -42,9 +43,11 @@ public class HoaDonServiceImpl implements HoaDonService {
 	}
 	
 	@Override
-    public List<Integer> getDistinctYears() {
-        return hoaDonRepository.findDistinctYears();
-    }
+	public List<Integer> getDistinctYears() {
+	    List<Integer> years = hoaDonRepository.findDistinctYears();
+	    Collections.sort(years);
+	    return years;
+	}
 	
 	@Override
     public List<HoaDon> getHoaDonByYear(int year) {
