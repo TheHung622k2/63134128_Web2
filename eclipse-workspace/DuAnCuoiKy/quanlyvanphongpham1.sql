@@ -15,6 +15,10 @@ CREATE TABLE IF NOT EXISTS nguoidung (
     email VARCHAR(100)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+ALTER TABLE nguoidung ADD COLUMN trang_thai BOOLEAN NOT NULL DEFAULT TRUE;
+
+UPDATE nguoidung SET trang_thai = TRUE WHERE trang_thai IS NULL;
+
 DROP TABLE IF EXISTS nguoidung;
 
 -- Bảng 'nhacungcap'

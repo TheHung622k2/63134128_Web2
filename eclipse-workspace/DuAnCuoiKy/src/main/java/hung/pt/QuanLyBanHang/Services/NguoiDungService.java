@@ -18,4 +18,6 @@ public interface NguoiDungService {
 	List<NguoiDung> getNguoiDungsByTenDangNhap(String tenDangNhap);
 
 	List<NguoiDung> getNguoiDungsByQuyen(String quyen);
+	
+	void updateTrangThaiNguoiDung(int id, boolean trangThai);
 }

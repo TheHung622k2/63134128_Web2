@@ -17,4 +17,6 @@ public interface SanPhamRepository extends JpaRepository<SanPham, Integer> {
 	List<SanPham> findByGiaTienBetween(float minGiaTien, float maxGiaTien);
 	
 	Page<SanPham> findAll(Pageable pageable);
+	
+	Page<SanPham> findByTenSanPhamContaining(String tenSanPham, Pageable pageable);	
 }

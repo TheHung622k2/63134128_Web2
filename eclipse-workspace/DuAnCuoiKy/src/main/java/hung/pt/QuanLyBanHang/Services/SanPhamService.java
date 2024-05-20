@@ -21,5 +21,7 @@ public interface SanPhamService {
 
 	List<SanPham> getSanPhamsByGiaTienBetween(float minGiaTien, float maxGiaTien);
 	
-	Page<SanPham> getAllSanPhams(Pageable pageable);
+	Page<SanPham> getAllSanPhams(Pageable pageable);	
+	
+	Page<SanPham> searchSanPhams(String keyword, Pageable pageable);
 }

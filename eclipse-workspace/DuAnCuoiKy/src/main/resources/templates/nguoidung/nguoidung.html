@@ -45,7 +45,7 @@
     <div th:replace="fragments/navbar :: navbarFragment"></div>
     <div class="container mt-5">
         <div class="header">
-            <h1 class="mb-4">Danh sách người dùng</h1>
+            <h1 class="mb-4">Danh sách nhân viên</h1>
             <a href="/nguoidung/them" class="btn btn-primary">Thêm người dùng</a>
         </div>
 
@@ -61,6 +61,7 @@
                         <th scope="col">Số điện thoại</th>
                         <th scope="col">Ngày sinh</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Trạng thái</th>
                         <th scope="col">Hành động</th>
                     </tr>
                 </thead>
@@ -74,11 +75,20 @@
                         <td th:text="${nguoiDung.sdt}"></td>
                         <td th:text="${nguoiDung.ngaySinh}"></td>
                         <td th:text="${nguoiDung.email}"></td>
+                        <td th:text="${nguoiDung.trangThai ? 'Active' : 'Locked'}"></td>
                         <td>
                             <div class="btn-group">
                                 <a th:href="@{/nguoidung/chitiet/{id}(id=${nguoiDung.userId})}" class="btn btn-info btn-sm">Chi tiết</a>
                                 <a th:href="@{/nguoidung/sua/{id}(id=${nguoiDung.userId})}" class="btn btn-warning btn-sm">Sửa</a>
                                 <a th:href="@{/nguoidung/xoa/{id}(id=${nguoiDung.userId})}" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc muốn xóa người dùng này không?')">Xóa</a>
+                                <form th:action="@{/nguoidung/khoa}" method="post" style="display: inline;">
+                                    <input type="hidden" name="userId" th:value="${nguoiDung.userId}" />
+                                    <button type="submit" class="btn btn-secondary btn-sm" th:if="${nguoiDung.trangThai}" onclick="return confirm('Bạn có chắc muốn khóa tài khoản này không?')">Khóa</button>
+                                </form>
+                                <form th:action="@{/nguoidung/mokhoa}" method="post" style="display: inline;">
+                                    <input type="hidden" name="userId" th:value="${nguoiDung.userId}" />
+                                    <button type="submit" class="btn btn-success btn-sm" th:if="${!nguoiDung.trangThai}" onclick="return confirm('Bạn có chắc muốn mở khóa tài khoản này không?')">Mở khóa</button>
+                                </form>
                             </div>
                         </td>
                     </tr>

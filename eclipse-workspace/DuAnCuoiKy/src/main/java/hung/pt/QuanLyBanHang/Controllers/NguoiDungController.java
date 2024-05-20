@@ -3,6 +3,7 @@ package hung.pt.QuanLyBanHang.Controllers;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -28,15 +29,19 @@ public class NguoiDungController {
     @GetMapping("/all")
     public String getAllNguoiDung(Model model) {
         List<NguoiDung> dsNguoiDung = nguoiDungService.getAllNguoiDungs();
-        model.addAttribute("dsNguoiDung", dsNguoiDung);
+        // Lọc ra các tài khoản không phải là "Admin"
+        List<NguoiDung> dsNhanVien = dsNguoiDung.stream()
+                                                 .filter(nguoiDung -> !"Admin".equals(nguoiDung.getQuyen()))
+                                                 .collect(Collectors.toList());
+        model.addAttribute("dsNguoiDung", dsNhanVien);
         return "nguoidung/nguoidung";
     }
-    
+
     @GetMapping("/dangnhap")
     public String signIn() {
         return "dangnhap/sign_in";
     }
-    
+
     @PostMapping("/dangnhap")
     public String login(@RequestParam("username") String username, @RequestParam("password") String password, Model model, HttpSession session) {
         List<NguoiDung> nguoiDungs = nguoiDungService.getNguoiDungsByTenDangNhap(username);
@@ -45,6 +50,10 @@ public class NguoiDungController {
 
         for (NguoiDung nguoiDung : nguoiDungs) {
             if (nguoiDung.getMatKhau().equals(password)) {
+                if (!nguoiDung.isTrangThai()) {
+                    model.addAttribute("error", "Tài khoản của bạn tạm thời đang bị khóa!");
+                    return "dangnhap/sign_in";
+                }
                 isAuthenticated = true;
                 authenticatedUser = nguoiDung;
                 break;
@@ -52,13 +61,12 @@ public class NguoiDungController {
         }
 
         if (isAuthenticated && authenticatedUser != null) {
-            session.setAttribute("authenticatedUser", authenticatedUser); // Lưu thông tin người dùng vào session
+            session.setAttribute("authenticatedUser", authenticatedUser);
             if ("Admin".equals(authenticatedUser.getQuyen())) {
-                return "admin/admin"; // Chuyển hướng đến trang Admin
+                return "admin/admin";
             } else if ("Nhân viên".equals(authenticatedUser.getQuyen())) {
-                return "employee/nhanvien"; // Chuyển hướng đến trang Nhân viên
+                return "employee/nhanvien";
             } else {
-                // Trường hợp này có thể xảy ra nếu có quyền khác không được xử lý
                 model.addAttribute("error", "Không có quyền truy cập phù hợp!");
                 return "dangnhap/sign_in";
             }
@@ -72,7 +80,7 @@ public class NguoiDungController {
     public String signUp() {
         return "dangky/sign_up";
     }
-    
+
     @PostMapping("/dangky")
     public String signUp(@RequestParam("username") String username,
                          @RequestParam("password") String password,
@@ -103,19 +111,18 @@ public class NguoiDungController {
             }
         }
 
-        NguoiDung nguoiDung = new NguoiDung(username, "Nhân viên", password, hoVaTen, diaChi, sdt, ngaySinh, email);
+        NguoiDung nguoiDung = new NguoiDung(username, "Nhân viên", password, hoVaTen, diaChi, sdt, ngaySinh, email, true);
         nguoiDungService.saveNguoiDung(nguoiDung);
 
         return "dangnhap/sign_in";
     }
-    
+
     @GetMapping("/dangxuat")
     public String logout(HttpSession session) {
-        session.removeAttribute("authenticatedUser"); // Xóa thông tin người dùng khỏi session
-        return "redirect:/home"; // Chuyển hướng về trang đăng nhập
+        session.removeAttribute("authenticatedUser");
+        return "redirect:/home";
     }
 
-    
     @GetMapping("/them")
     public String themNguoiDungForm(Model model) {
         model.addAttribute("nguoiDung", new NguoiDung());
@@ -161,5 +168,28 @@ public class NguoiDungController {
         } else {
             return "redirect:/nguoidung/all";
         }
+    }
+
+    @PostMapping("/khoa")
+    public String khoaNguoiDung(@RequestParam("userId") int userId) {
+        nguoiDungService.updateTrangThaiNguoiDung(userId, false);
+        return "redirect:/nguoidung/all";
+    }
+
+    @PostMapping("/mokhoa")
+    public String moKhoaNguoiDung(@RequestParam("userId") int userId) {
+        nguoiDungService.updateTrangThaiNguoiDung(userId, true);
+        return "redirect:/nguoidung/all";
+    }
+    
+    @PostMapping("/toggle")
+    public String toggleNguoiDung(@RequestParam("userId") int userId) {
+        Optional<NguoiDung> optionalNguoiDung = nguoiDungService.getNguoiDungById(userId);
+        if (optionalNguoiDung.isPresent()) {
+            NguoiDung nguoiDung = optionalNguoiDung.get();
+            nguoiDung.setTrangThai(!nguoiDung.isTrangThai());
+            nguoiDungService.saveNguoiDung(nguoiDung);
+        }
+        return "redirect:/nguoidung/all";
     }
 }

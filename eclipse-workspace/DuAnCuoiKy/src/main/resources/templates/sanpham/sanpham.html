@@ -57,10 +57,16 @@
     <div class="container mt-5">
         <h1 class="mb-4">Danh sách sản phẩm</h1>
         <div>
+            <form th:action="@{/sanpham/all}" method="get" class="d-flex mb-3">
+                <input type="text" name="keyword" class="form-control me-2 w-50" placeholder="Tìm kiếm sản phẩm..." th:value="${keyword}">
+                <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+            </form>
+        </div>
+        <div>
             <a href="/sanpham/them" class="btn btn-primary mb-3">Thêm sản phẩm mới</a>
         </div>
         <div class="table-responsive">
-            <table class="table table-hover align-middle">
+            <table class="table table-hover align-middle" th:if="${dsSanPham.content.size() > 0}">
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">STT</th>
@@ -89,22 +95,23 @@
                         <td>
                             <a th:href="@{/sanpham/chitiet/{id}(id=${sanPham.maSanPham})}" class="btn btn-info btn-action">Chi tiết</a>
                             <a th:href="@{/sanpham/sua/{id}(id=${sanPham.maSanPham})}" class="btn btn-success btn-action">Sửa</a>
-                            <a th:href="@{/sanpham/xoa/{id}(id=${sanPham.maSanPham})}" class="btn btn-danger btn-action" onclick="return confirm('Bạn có chắc muốn xóa người dùng này không?')">Xóa</a>                          
+                            <a th:href="@{/sanpham/xoa/{id}(id=${sanPham.maSanPham})}" class="btn btn-danger btn-action" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?')">Xóa</a>
                         </td>
                     </tr>
                 </tbody>
             </table>
+            <div th:if="${dsSanPham.content.size() == 0}">
+                <p>Không có sản phẩm nào được tìm thấy.</p>
+            </div>
         </div>
         <!-- Pagination controls -->
         <div class="pagination d-flex justify-content-center mt-4">
-            <a th:href="@{/sanpham/all(page=${dsSanPham.number - 1})}" th:if="${dsSanPham.hasPrevious()}" class="btn btn-primary btn-sm me-2">
-                Trang Trước
-            </a>
+            <a th:href="@{/sanpham/all(page=0, keyword=${keyword})}" th:if="${!dsSanPham.isFirst()}" class="btn btn-primary btn-sm me-2">Trang Đầu</a>
+            <a th:href="@{/sanpham/all(page=${dsSanPham.number - 1}, keyword=${keyword})}" th:if="${dsSanPham.hasPrevious()}" class="btn btn-primary btn-sm me-2">Trang Trước</a>
             <span class="align-self-center me-2">Trang [[${dsSanPham.number + 1}]] trên [[${dsSanPham.totalPages}]]</span>
-            <a th:href="@{/sanpham/all(page=${dsSanPham.number + 1})}" th:if="${dsSanPham.hasNext()}" class="btn btn-primary btn-sm">
-                Trang Sau
-            </a>
-        </div>     
+            <a th:href="@{/sanpham/all(page=${dsSanPham.number + 1}, keyword=${keyword})}" th:if="${dsSanPham.hasNext()}" class="btn btn-primary btn-sm me-2">Trang Sau</a>
+            <a th:href="@{/sanpham/all(page=${dsSanPham.totalPages - 1}, keyword=${keyword})}" th:if="${!dsSanPham.isLast()}" class="btn btn-primary btn-sm">Trang Cuối</a>
+        </div>
     </div>
     <div th:replace="fragments/footer :: footerFragment"></div>
     <script src="/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>

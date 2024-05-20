@@ -46,10 +46,18 @@ public class SanPhamController {
     private NoiGiaCongVaSanXuatService noiGiaCongVaSanXuatService;
 
     @GetMapping("/all")
-    public String getAllSanPhams(@RequestParam(defaultValue = "0") int page, Model model) {
+    public String getAllSanPhams(@RequestParam(defaultValue = "0") int page, 
+                                 @RequestParam(defaultValue = "") String keyword, 
+                                 Model model) {
         Pageable pageable = PageRequest.of(page, 10); // 10 sản phẩm mỗi trang
-        Page<SanPham> dsSanPham = sanPhamService.getAllSanPhams(pageable);
+        Page<SanPham> dsSanPham;
+        if (keyword.isEmpty()) {
+            dsSanPham = sanPhamService.getAllSanPhams(pageable);
+        } else {
+            dsSanPham = sanPhamService.searchSanPhams(keyword, pageable);
+        }
         model.addAttribute("dsSanPham", dsSanPham);
+        model.addAttribute("keyword", keyword);
         return "sanpham/sanpham";
     }
     

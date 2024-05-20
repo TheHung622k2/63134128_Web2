@@ -47,6 +47,9 @@ public class NguoiDung {
 
 	@Column(name = "email", length = 100)
 	private String email;
+	
+	@Column(name = "trang_thai", nullable = false)
+    private boolean trangThai = true; // true: active, false: locked
 
 	// Constructors, getters, setters
 
@@ -54,7 +57,7 @@ public class NguoiDung {
 	}
 
 	public NguoiDung(String tenDangNhap, String quyen, String matKhau, String hoVaTen, String diaChi, String sdt,
-			Date ngaySinh, String email) {
+			Date ngaySinh, String email, boolean trangThai) {
 		this.tenDangNhap = tenDangNhap;
 		this.quyen = quyen;
 		this.matKhau = matKhau;
@@ -63,6 +66,7 @@ public class NguoiDung {
 		this.sdt = sdt;
 		this.ngaySinh = ngaySinh;
 		this.email = email;
+		this.trangThai = trangThai;
 	}
 
 	public int getUserId() {
@@ -136,6 +140,14 @@ public class NguoiDung {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public boolean isTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(boolean trangThai) {
+        this.trangThai = trangThai;
+    }
 
 	@Override
 	public String toString() {

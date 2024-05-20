@@ -52,4 +52,9 @@ public class SanPhamServiceImpl implements SanPhamService {
     public Page<SanPham> getAllSanPhams(Pageable pageable) {
         return sanPhamRepository.findAll(pageable);
     }
+	
+	@Override
+    public Page<SanPham> searchSanPhams(String keyword, Pageable pageable) {
+        return sanPhamRepository.findByTenSanPhamContaining(keyword, pageable);
+    }
 }

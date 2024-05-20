@@ -44,4 +44,14 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 	public List<NguoiDung> getNguoiDungsByQuyen(String quyen) {
 		return nguoiDungRepository.findByQuyen(quyen);
 	}
+	
+	@Override
+    public void updateTrangThaiNguoiDung(int id, boolean trangThai) {
+        Optional<NguoiDung> optionalNguoiDung = nguoiDungRepository.findById(id);
+        if (optionalNguoiDung.isPresent()) {
+            NguoiDung nguoiDung = optionalNguoiDung.get();
+            nguoiDung.setTrangThai(trangThai);
+            nguoiDungRepository.save(nguoiDung);
+        }
+    }
 }

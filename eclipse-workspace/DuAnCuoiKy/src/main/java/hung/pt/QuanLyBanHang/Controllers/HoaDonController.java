@@ -39,5 +39,4 @@ public class HoaDonController {
 	    model.addAttribute("endMonth", endMonth);
 	    return "hoadon/thongke";
 	}
-
 }
