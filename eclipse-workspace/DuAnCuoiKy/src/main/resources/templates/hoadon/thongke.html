@@ -59,7 +59,7 @@
 </head>
 <body>
     <!-- Navbar Fragment -->
-    <div th:replace="fragments/navbar :: navbarFragment"></div>
+    <nav th:replace="~{fragments/navbar :: navbarFragment}"></nav>
     
     <div class="container mt-5" style="min-height:835px">
         <div class="card">
@@ -108,12 +108,7 @@
     </div>
     
     <!-- Footer Fragment -->
-    <footer th:replace="fragments/footer :: footerFragment">
-        <div class="container">
-            <p>&copy; 2024 Your Company. All rights reserved.</p>
-            <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
-        </div>
-    </footer>
+    <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
 
     <script th:inline="javascript">
         /*<![CDATA[*/

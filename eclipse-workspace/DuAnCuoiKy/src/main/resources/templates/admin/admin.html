@@ -63,7 +63,7 @@
     </style>
 </head>
 <body>
-    <nav th:replace="fragments/navbar :: navbarFragment"></nav>
+    <nav th:replace="~{fragments/navbar :: navbarFragment}"></nav>
     <div class="container" style="min-height:800px">
         <div class="row">
             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
@@ -103,7 +103,7 @@
             </div>
         </div>
     </div>
-    <footer th:replace="fragments/footer :: footerFragment"></footer>
+    <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script>
         function logout() {

@@ -45,7 +45,7 @@
     </style>
 </head>
 <body>
-    <div th:replace="fragments/navbar :: navbarFragment"></div>
+    <nav th:replace="~{fragments/navbar :: navbarFragment}"></nav>
     <div class="container mt-5">
         <div class="header">
             <h1 class="mb-4">Danh sách nhân viên</h1>
@@ -97,7 +97,7 @@
             </table>
         </div>
     </div>
-    <div th:replace="fragments/footer :: footerFragment"></div>
+    <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
 
     <!-- Bootstrap JS -->
     <script src="/js/bootstrap.bundle.min.js"></script>

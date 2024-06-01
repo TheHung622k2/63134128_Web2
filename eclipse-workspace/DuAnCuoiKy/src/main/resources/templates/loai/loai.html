@@ -52,7 +52,7 @@
     </style>
 </head>
 <body>
-    <div th:replace="fragments/navbar :: navbarFragment"></div>
+    <nav th:replace="~{fragments/navbar :: navbarFragment}"></nav>
     <div class="container mt-5">
         <h1 class="mb-4">Danh sách loại</h1>
         <div class="table-responsive">
@@ -80,7 +80,7 @@
         </div>
         <a href="/loai/add" class="btn btn-success">Thêm loại mới</a>
     </div>
-    <div th:replace="fragments/footer :: footerFragment"></div>
+    <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
 
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
