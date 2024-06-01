@@ -1,5 +1,11 @@
 package hung.pt.QuanLyBanHang.Controllers;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,10 +16,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import hung.pt.QuanLyBanHang.Models.Loai;
 import hung.pt.QuanLyBanHang.Models.NhaCungCap;
@@ -29,6 +38,8 @@ import hung.pt.QuanLyBanHang.Services.ThuongHieuService;
 @Controller
 @RequestMapping("/sanpham")
 public class SanPhamController {
+	
+	private static final String UPLOAD_DIR = "src/main/resources/static/products/";
 
     @Autowired
     private SanPhamService sanPhamService;
@@ -56,7 +67,6 @@ public class SanPhamController {
         Pageable pageable = PageRequest.of(page, 10); // 10 sản phẩm mỗi trang
         Page<SanPham> dsSanPham;
 
-        // Chuyển chuỗi trống thành null
         Integer nccId = nhaCungCapId.isEmpty() ? null : Integer.parseInt(nhaCungCapId);
         Integer lId = loaiId.isEmpty() ? null : Integer.parseInt(loaiId);
         Integer thId = thuongHieuId.isEmpty() ? null : Integer.parseInt(thuongHieuId);
@@ -112,7 +122,21 @@ public class SanPhamController {
     }
 
     @PostMapping("/them")
-    public String themSanPham(SanPham sanPham) {
+    public String themSanPham(@ModelAttribute("sanPham") SanPham sanPham, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
+        if (file != null && !file.isEmpty()) {
+            try {
+                String fileName = file.getOriginalFilename();
+                Path path = Paths.get(UPLOAD_DIR + fileName);
+                
+                Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+
+                sanPham.setAnhSp("/products/" + fileName);
+            } catch (IOException e) {
+                e.printStackTrace();
+                redirectAttributes.addFlashAttribute("message", "File upload failed!");
+                return "redirect:/sanpham/them";
+            }
+        }
         sanPhamService.saveSanPham(sanPham);
         return "redirect:/sanpham/all";
     }
@@ -145,9 +169,29 @@ public class SanPhamController {
     }
 
     @PostMapping("/sua")
-    public String suaSanPham(@RequestParam("maSanPham") int maSanPham, SanPham sanPham) {
-        sanPham.setMaSanPham(maSanPham);
-        sanPhamService.saveSanPham(sanPham);
+    public String suaSanPham(@RequestParam("maSanPham") int maSanPham, @ModelAttribute("sanPham") SanPham sanPham, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
+        Optional<SanPham> existingSanPhamOpt = sanPhamService.getSanPhamById(maSanPham);
+        if (existingSanPhamOpt.isPresent()) {
+            SanPham existingSanPham = existingSanPhamOpt.get();
+
+            if (file != null && !file.isEmpty()) {
+                String fileName = file.getOriginalFilename();
+                Path path = Paths.get(UPLOAD_DIR + fileName);
+                try {
+                    Files.write(path, file.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+                    sanPham.setAnhSp("/products/" + fileName);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    redirectAttributes.addFlashAttribute("message", "Tải tệp thất bại!");
+                    return "redirect:/sanpham/sua/" + maSanPham;
+                }
+            } else {
+                sanPham.setAnhSp(existingSanPham.getAnhSp());
+            }
+
+            sanPham.setMaSanPham(maSanPham);
+            sanPhamService.saveSanPham(sanPham);
+        }
         return "redirect:/sanpham/all";
     }
 
@@ -166,20 +210,5 @@ public class SanPhamController {
         } else {
             return "redirect:/sanpham/all";
         }
-    }
-    
-    @GetMapping("/test")
-    public String test(Model model) {
-        List<NhaCungCap> listNhaCungCap = nhaCungCapService.getAllNhaCungCap();
-        List<Loai> listLoai = loaiService.getAllLoai();
-        List<ThuongHieu> listThuongHieu = thuongHieuService.getAllThuongHieu();
-        List<NoiGiaCongVaSanXuat> listNoiGiaCongVaSanXuat = noiGiaCongVaSanXuatService.getAllNoiGiaCongVaSanXuat();
-        
-        model.addAttribute("listNhaCungCap", listNhaCungCap);
-        model.addAttribute("listLoai", listLoai);
-        model.addAttribute("listThuongHieu", listThuongHieu);
-        model.addAttribute("listNoiGiaCongVaSanXuat", listNoiGiaCongVaSanXuat);
-
-        return "sanpham/test";
     }
 }
