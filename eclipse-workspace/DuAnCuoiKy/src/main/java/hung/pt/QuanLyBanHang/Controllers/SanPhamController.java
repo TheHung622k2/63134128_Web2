@@ -48,19 +48,46 @@ public class SanPhamController {
     @GetMapping("/all")
     public String getAllSanPhams(@RequestParam(defaultValue = "0") int page, 
                                  @RequestParam(defaultValue = "") String keyword, 
+                                 @RequestParam(defaultValue = "") String nhaCungCapId,
+                                 @RequestParam(defaultValue = "") String loaiId,
+                                 @RequestParam(defaultValue = "") String thuongHieuId,
+                                 @RequestParam(defaultValue = "") String noiGiaCongVaSanXuatId,
                                  Model model) {
         Pageable pageable = PageRequest.of(page, 10); // 10 sản phẩm mỗi trang
         Page<SanPham> dsSanPham;
-        if (keyword.isEmpty()) {
-            dsSanPham = sanPhamService.getAllSanPhams(pageable);
+
+        // Chuyển chuỗi trống thành null
+        Integer nccId = nhaCungCapId.isEmpty() ? null : Integer.parseInt(nhaCungCapId);
+        Integer lId = loaiId.isEmpty() ? null : Integer.parseInt(loaiId);
+        Integer thId = thuongHieuId.isEmpty() ? null : Integer.parseInt(thuongHieuId);
+        Integer ngcvsxId = noiGiaCongVaSanXuatId.isEmpty() ? null : Integer.parseInt(noiGiaCongVaSanXuatId);
+
+        if (!keyword.isEmpty() || nccId != null || lId != null || thId != null || ngcvsxId != null) {
+            dsSanPham = sanPhamService.filterSanPhams(keyword, nccId, lId, thId, ngcvsxId, pageable);
         } else {
-            dsSanPham = sanPhamService.searchSanPhams(keyword, pageable);
+            dsSanPham = sanPhamService.getAllSanPhams(pageable);
         }
+
+        List<NhaCungCap> listNhaCungCap = nhaCungCapService.getAllNhaCungCap();
+        List<Loai> listLoai = loaiService.getAllLoai();
+        List<ThuongHieu> listThuongHieu = thuongHieuService.getAllThuongHieu();
+        List<NoiGiaCongVaSanXuat> listNoiGiaCongVaSanXuat = noiGiaCongVaSanXuatService.getAllNoiGiaCongVaSanXuat();
+
         model.addAttribute("dsSanPham", dsSanPham);
         model.addAttribute("keyword", keyword);
+        model.addAttribute("listNhaCungCap", listNhaCungCap);
+        model.addAttribute("listLoai", listLoai);
+        model.addAttribute("listThuongHieu", listThuongHieu);
+        model.addAttribute("listNoiGiaCongVaSanXuat", listNoiGiaCongVaSanXuat);
+
+        model.addAttribute("nhaCungCapId", nhaCungCapId);
+        model.addAttribute("loaiId", loaiId);
+        model.addAttribute("thuongHieuId", thuongHieuId);
+        model.addAttribute("noiGiaCongVaSanXuatId", noiGiaCongVaSanXuatId);
+
         return "sanpham/sanpham";
     }
-    
+
     @GetMapping("/them")
     public String themSanPhamForm(Model model) {
         model.addAttribute("sanPham", new SanPham());
@@ -139,5 +166,20 @@ public class SanPhamController {
         } else {
             return "redirect:/sanpham/all";
         }
+    }
+    
+    @GetMapping("/test")
+    public String test(Model model) {
+        List<NhaCungCap> listNhaCungCap = nhaCungCapService.getAllNhaCungCap();
+        List<Loai> listLoai = loaiService.getAllLoai();
+        List<ThuongHieu> listThuongHieu = thuongHieuService.getAllThuongHieu();
+        List<NoiGiaCongVaSanXuat> listNoiGiaCongVaSanXuat = noiGiaCongVaSanXuatService.getAllNoiGiaCongVaSanXuat();
+        
+        model.addAttribute("listNhaCungCap", listNhaCungCap);
+        model.addAttribute("listLoai", listLoai);
+        model.addAttribute("listThuongHieu", listThuongHieu);
+        model.addAttribute("listNoiGiaCongVaSanXuat", listNoiGiaCongVaSanXuat);
+
+        return "sanpham/test";
     }
 }

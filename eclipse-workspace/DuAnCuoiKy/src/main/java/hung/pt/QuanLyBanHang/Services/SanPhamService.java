@@ -2,6 +2,7 @@ package hung.pt.QuanLyBanHang.Services;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -24,4 +25,6 @@ public interface SanPhamService {
 	Page<SanPham> getAllSanPhams(Pageable pageable);	
 	
 	Page<SanPham> searchSanPhams(String keyword, Pageable pageable);
+	
+	Page<SanPham> filterSanPhams(String keyword, Integer nhaCungCapId, Integer loaiId, Integer thuongHieuId, Integer noiGiaCongVaSanXuatId, Pageable pageable);
 }

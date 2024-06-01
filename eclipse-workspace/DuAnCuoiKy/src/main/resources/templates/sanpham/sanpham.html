@@ -57,9 +57,45 @@
     <div class="container mt-5">
         <h1 class="mb-4">Danh sách sản phẩm</h1>
         <div>
-            <form th:action="@{/sanpham/all}" method="get" class="d-flex mb-3">
-                <input type="text" name="keyword" class="form-control me-2 w-50" placeholder="Tìm kiếm sản phẩm..." th:value="${keyword}">
-                <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+            <form th:action="@{/sanpham/all}" method="get" class="row g-3 mb-3">
+                <div class="col-md-4">
+                    <input type="text" name="keyword" class="form-control" placeholder="Tìm kiếm sản phẩm..." th:value="${keyword}">
+                </div>
+                <div class="col-md-2">
+                    <select name="nhaCungCapId" class="form-select">
+                        <option value="">--Chọn nhà cung cấp--</option>
+                        <th:block th:each="ncc : ${listNhaCungCap}">
+                            <option th:value="${ncc.maNhaCungCap}" th:text="${ncc.tenNhaCungCap}" th:selected="${ncc.maNhaCungCap == nhaCungCapId}"></option>
+                        </th:block>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <select name="loaiId" class="form-select">
+                        <option value="">--Chọn loại--</option>
+                        <th:block th:each="loai : ${listLoai}">
+                            <option th:value="${loai.maLoai}" th:text="${loai.tenLoai}" th:selected="${loai.maLoai == loaiId}"></option>
+                        </th:block>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <select name="thuongHieuId" class="form-select">
+                        <option value="">--Chọn thương hiệu--</option>
+                        <th:block th:each="thuonghieu : ${listThuongHieu}">
+                            <option th:value="${thuonghieu.maThuongHieu}" th:text="${thuonghieu.tenThuongHieu}" th:selected="${thuonghieu.maThuongHieu == thuongHieuId}"></option>
+                        </th:block>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <select name="noiGiaCongVaSanXuatId" class="form-select">
+                        <option value="">--Chọn nơi gia công và sản xuất--</option>
+                        <th:block th:each="noigiacongvasanxuat : ${listNoiGiaCongVaSanXuat}">
+                            <option th:value="${noigiacongvasanxuat.maNoiGiaCongVaSanXuat}" th:text="${noigiacongvasanxuat.tenNoiGiaCongVaSanXuat}" th:selected="${noigiacongvasanxuat.maNoiGiaCongVaSanXuat == noiGiaCongVaSanXuatId}"></option>
+                        </th:block>
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-primary">Lọc</button>
+                </div>
             </form>
         </div>
         <div>
@@ -93,9 +129,11 @@
                         <td th:text="|${#numbers.formatDecimal(sanPham.giaTien, 0, 'COMMA', 0, 'POINT')} đ|"></td>
                         <td><img th:src="@{${sanPham.anhSp}}" alt="Ảnh sản phẩm" class="table-img"/></td>
                         <td>
-                            <a th:href="@{/sanpham/chitiet/{id}(id=${sanPham.maSanPham})}" class="btn btn-info btn-action">Chi tiết</a>
-                            <a th:href="@{/sanpham/sua/{id}(id=${sanPham.maSanPham})}" class="btn btn-success btn-action">Sửa</a>
-                            <a th:href="@{/sanpham/xoa/{id}(id=${sanPham.maSanPham})}" class="btn btn-danger btn-action" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?')">Xóa</a>
+                            <div class="d-flex justify-content-center">
+                                <a th:href="@{/sanpham/chitiet/{id}(id=${sanPham.maSanPham})}" class="btn btn-info btn-action">Detail</a>
+                                <a th:href="@{/sanpham/sua/{id}(id=${sanPham.maSanPham})}" class="btn btn-success btn-action">Edit</a>
+                                <a th:href="@{/sanpham/xoa/{id}(id=${sanPham.maSanPham})}" class="btn btn-danger btn-action" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?')">Delete</a>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -106,14 +144,14 @@
         </div>
         <!-- Pagination controls -->
         <div class="pagination d-flex justify-content-center mt-4">
-            <a th:href="@{/sanpham/all(page=0, keyword=${keyword})}" th:if="${!dsSanPham.isFirst()}" class="btn btn-primary btn-sm me-2">Trang Đầu</a>
-            <a th:href="@{/sanpham/all(page=${dsSanPham.number - 1}, keyword=${keyword})}" th:if="${dsSanPham.hasPrevious()}" class="btn btn-primary btn-sm me-2">Trang Trước</a>
+            <a th:href="@{/sanpham/all(page=0, keyword=${keyword}, nhaCungCapId=${nhaCungCapId}, loaiId=${loaiId}, thuongHieuId=${thuongHieuId}, noiGiaCongVaSanXuatId=${noiGiaCongVaSanXuatId})}" th:if="${!dsSanPham.isFirst()}" class="btn btn-primary btn-sm me-2">Trang Đầu</a>
+            <a th:href="@{/sanpham/all(page=${dsSanPham.number - 1}, keyword=${keyword}, nhaCungCapId=${nhaCungCapId}, loaiId=${loaiId}, thuongHieuId=${thuongHieuId}, noiGiaCongVaSanXuatId=${noiGiaCongVaSanXuatId})}" th:if="${dsSanPham.hasPrevious()}" class="btn btn-primary btn-sm me-2">Trang Trước</a>
             <span class="align-self-center me-2">Trang [[${dsSanPham.number + 1}]] trên [[${dsSanPham.totalPages}]]</span>
-            <a th:href="@{/sanpham/all(page=${dsSanPham.number + 1}, keyword=${keyword})}" th:if="${dsSanPham.hasNext()}" class="btn btn-primary btn-sm me-2">Trang Sau</a>
-            <a th:href="@{/sanpham/all(page=${dsSanPham.totalPages - 1}, keyword=${keyword})}" th:if="${!dsSanPham.isLast()}" class="btn btn-primary btn-sm">Trang Cuối</a>
+            <a th:href="@{/sanpham/all(page=${dsSanPham.number + 1}, keyword=${keyword}, nhaCungCapId=${nhaCungCapId}, loaiId=${loaiId}, thuongHieuId=${thuongHieuId}, noiGiaCongVaSanXuatId=${noiGiaCongVaSanXuatId})}" th:if="${dsSanPham.hasNext()}" class="btn btn-primary btn-sm me-2">Trang Sau</a>
+            <a th:href="@{/sanpham/all(page=${dsSanPham.totalPages - 1}, keyword=${keyword}, nhaCungCapId=${nhaCungCapId}, loaiId=${loaiId}, thuongHieuId=${thuongHieuId}, noiGiaCongVaSanXuatId=${noiGiaCongVaSanXuatId})}" th:if="${!dsSanPham.isLast()}" class="btn btn-primary btn-sm">Trang Cuối</a>
         </div>
     </div>
     <div th:replace="fragments/footer :: footerFragment"></div>
-    <script src="/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/webjars/bootstrap/5.3.0/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>

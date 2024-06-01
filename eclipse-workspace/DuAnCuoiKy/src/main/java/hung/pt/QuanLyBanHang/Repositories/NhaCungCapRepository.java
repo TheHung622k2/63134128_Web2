@@ -9,6 +9,5 @@ import hung.pt.QuanLyBanHang.Models.NhaCungCap;
 
 @Repository
 public interface NhaCungCapRepository extends JpaRepository<NhaCungCap, Integer> {
-
 	List<NhaCungCap> findByTenNhaCungCap(String tenNhaCungCap);
 }
